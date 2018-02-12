@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+ <head>
+   <title>Survey</title>
+   <style>
+   #outercontainer{
+     border-radius: 10px;
+     width: 600px;
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 85px;
+     background-color: #443217;
+     background-color: rgba(87, 167, 237, 0.6);
+     color: white;
+     padding: 20px;
+     /*opacity: 0.4; same as the rgba stuff before*/
+   }
+
+   .form-row{
+     margin-bottom: 10px;
+   }
+
+   label{
+     width: 220px;
+     float: left;
+     text-align: right;
+     margin-bottom: 10px;
+     margin-right: 5px;
+     font-family: courier;
+   }
+
+   .radio-label{
+     float: none;
+   }
+
+   .checkbox-label{
+     float: none;
+   }
+
+   body{
+
+     background-repeat: no-repeat;
+     background-size: 100%;
+   }
+   </style>
+ </head>
+
+ <body>
+   <div id="outercontainer">
+     <h3 style="text-align: center; color: #F2D7D5; font-family: Tw Cen MT;">PLEASE FILL OUT THE FORM BELOW</h3>
+
+     <form action="http://www.usc.edu/cgi-bin/form_handler" method="POST">
+
+       <div class="form-row">
+         <label for="name">Name: </label>   <input type="text" name="name" />
+       </div>
+
+
+       <div class="form-row">
+         <label for="age">Age: </label>   <input type="text" name="age" />
+       </div>
+
+       <div class="form-row">
+         <label>Gender: </label>
+         <input type="radio" name="gender" value="male"/>
+         <label class="radio-label" for="male">Male</label>
+         <input type="radio" name="gender" value="female"/>
+         <label class="radio-label" for="female">Female</label>
+       </div>
+
+       <div class="form-row">
+         <label>Please specify you personality: </label>
+         <input  type="checkbox" name="field" value="introvert" /> <label class="checkbox-label" for="business">Introvert</label>
+         <input  type="checkbox" name="field" value="extrovert" /> <label class="checkbox-label" for="engineering">Extrovert</label>
+         <br />
+         <input  type="checkbox" name="field" value="?1" /> <label class="checkbox-label" for="?1">？</label>
+         <input  type="checkbox" name="major" value="?2" /> <label class="checkbox-label" for="?2">？？</label>
+
+       </div>
+
+       <div class="form-row">
+         <label>Please specify your occupation: </label>
+         <textarea name="occupation" style="width: 180px;"></textarea>
+       </div>
+
+       <div class="form-row">
+         <label>Use one word to describe your feeling today </label>
+         <textarea name="feeling" style="width: 180px;"></textarea>
+       </div>
+
+       <br />
+
+
+
+
+       <div style="text-align: center; ">
+         <!-- <input type="submit" style="width: 20em; height: 20em;" /> -->
+         <button name="submit">Submit</button>
+       </div>
+
+
+     </form>
+   </div>
+ </body>
+</html>
