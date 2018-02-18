@@ -3,7 +3,7 @@ var app = require('express')();
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 var token_socket = {};
@@ -76,6 +76,10 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/style.css', function(req, res) {
+  res.sendFile(__dirname + "/" + "style.css");
+});
+
 io.on('connection', function(socket){
 	console.log('someone connected to server');
 	socket.on('survey data', function(json){
@@ -103,7 +107,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('disconnect', function(){
-		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_name[socket.id], "user " 
+		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_name[socket.id], "user "
 			+ socket_name[socket.id] + " has disconnected");
 		var otherUser = room_pair[user_room[socket_user[socket.id]]].getOtherUser(socket_user[socket.id]);
 		socket.leave('room' + user_room[socket_user[socket.id]]);
