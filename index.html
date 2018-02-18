@@ -165,6 +165,7 @@
                 indexed_array[n['name']] = n['value'];
             });
             console.log(indexed_array);
+              socket.emit('survey data',indexed_array);
             return false;
           }
           socket.emit('chat message', msg);
