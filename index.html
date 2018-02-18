@@ -70,7 +70,7 @@
      <div id="outercontainer">
      <h3 style="text-align: center; color: #F2D7D5; font-family: Tw Cen MT;">PLEASE FILL OUT THE FORM BELOW</h3>
 
-     <form id="survey_form" action="http://www.usc.edu/cgi-bin/form_handler" method="POST">
+     <form name="survey_form" id="survey_form" action="http://www.usc.edu/cgi-bin/form_handler" method="POST">
 
        <div class="form-row">
          <label for="name">Name: </label>   <input type="text" name="name" />
@@ -157,6 +157,14 @@
             firstMsg = false;
             document.getElementById('outercontainer').style.display = 'none';
             document.getElementById('chat_container').style.display = 'block';
+              
+             
+            var unindexed_array = $("#survey_form").serializeArray();
+            var indexed_array = {};
+            $.map(unindexed_array, function(n,i){
+                indexed_array[n['name']] = n['value'];
+            });
+            console.log(indexed_array);
             return false;
           }
           socket.emit('chat message', msg);
