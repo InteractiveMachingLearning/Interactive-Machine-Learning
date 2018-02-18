@@ -91,6 +91,10 @@ io.on('connection', function(socket){
 
 	socket.join('room' + room);
 
+	socket.on('survey data', function(json){
+		console.log(json);
+	});
+
 	socket.on('chat message', function(msg){
 		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_user[socket.id], msg);
 	});
