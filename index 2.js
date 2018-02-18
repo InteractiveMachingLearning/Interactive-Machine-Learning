@@ -36,15 +36,13 @@ class Pair {
 		this.userA = -1;
 		this.userB = -1;
 	}
-	addUserA(user, userInfo) {
+	addUserA(user) {
 		this.users.push(user);
 		this.userA = user;
-		this.userAInfo = userInfo;
 	}
-	addUserB(user, userInfo) {
+	addUserB(user) {
 		this.users.push(user);
 		this.userB = user;
-		this.userBInfo = userInfo;
 	}
 	getUserA() {
 		return this.userA;
@@ -65,7 +63,6 @@ var socket_user = {};
 var user_socket = {};
 var user_room = {};
 var room_pair = {};
-var socket_name = {};
 var id = 0
 
 var http = require('http').Server(app);
@@ -73,43 +70,41 @@ var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 
 app.get('/', function(req, res){
-	res.sendFile(__dirname + '/index.html');
+	res.sendFile(__dirname + '/form.html');
+	console.log(res.session)
 });
 
 io.on('connection', function(socket){
-	console.log('someone connected to server');
-	socket.on('survey data', function(json){
-		console.log(json);
-		socket_user[socket.id] = id;
-		user_socket[id] = socket;
-		var room = Math.floor(id/2);
-		user_room[id] = room;
-		if (room_pair[room] == undefined) {
-			room_pair[room] = new Pair();
-			room_pair[room].addUserA(id, json);
-			socket_name[socket.id] = 'User A';
-		}
-		else {
-			room_pair[room].addUserB(id, json);
-			socket_name[socket.id] = 'User B';
-		}
-		socket.join('room' + room);
-		console.log('user ' + id + ' connected to room ' + room);
-		id ++;
-	});
+	socket_user[socket.id] = id;
+	user_socket[id] = socket;
+	var room = Math.floor(id/2);
+	user_room[id] = room;
+	if (room_pair[room] == undefined) {
+		room_pair[room] = new Pair();
+		room_pair[room].addUserA(id);
+	}
+	else {
+		room_pair[room].addUserB(id);
+	}
+
+	console.log('user ' + id + ' connected to room ' + room);
+
+	socket.join('room' + room);
 
 	socket.on('chat message', function(msg){
-		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_name[socket.id], msg);
+		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_user[socket.id], msg);
 	});
 
 	socket.on('disconnect', function(){
-		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_name[socket.id], "user " 
-			+ socket_name[socket.id] + " has disconnected");
+		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_user[socket.id], "user " 
+			+ socket_user[socket.id] + " has disconnected");
 		var otherUser = room_pair[user_room[socket_user[socket.id]]].getOtherUser(socket_user[socket.id]);
 		socket.leave('room' + user_room[socket_user[socket.id]]);
 		user_socket[otherUser].leave('room' + user_room[socket_user[socket.id]]);
 		console.log('user ' + socket_user[socket.id] +' disconnected');
 	});
+ 
+	id ++;
 });
 
 http.listen(port, function(){
