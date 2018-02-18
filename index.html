@@ -78,7 +78,7 @@
 
 
        <div class="form-row">
-         <label for="age">Age: </label>   <input type="text" name="age" />
+         <label for="age">Age: </label>   <input type="number" name="age" />
        </div>
 
        <div class="form-row">
@@ -148,6 +148,7 @@
     <script>
       var id;
       var firstMsg = true;
+
       $(function () {
         var socket = io();
         $('form').submit(function(){
@@ -155,6 +156,7 @@
           if(firstMsg)
           {
             firstMsg = false;
+              
             document.getElementById('outercontainer').style.display = 'none';
             document.getElementById('chat_container').style.display = 'block';
               
