@@ -73,40 +73,40 @@
      <form name="survey_form" id="survey_form" action="http://www.usc.edu/cgi-bin/form_handler" method="POST">
 
        <div class="form-row">
-         <label for="name">Name: </label>   <input type="text" name="name" />
+         <label for="name">Name: </label>   <input type="text" name="name" required />
        </div>
 
 
        <div class="form-row">
-         <label for="age">Age: </label>   <input type="number" name="age" />
+         <label for="age">Age: </label>   <input type="number" name="age" required />
        </div>
 
        <div class="form-row">
          <label>Gender: </label>
-         <input type="radio" name="gender" value="male"/>
+         <input type="radio" name="gender" value="male" required />
          <label class="radio-label" for="male">Male</label>
-         <input type="radio" name="gender" value="female"/>
+         <input type="radio" name="gender" value="female" required/>
          <label class="radio-label" for="female">Female</label>
        </div>
 
        <div class="form-row">
          <label>Please specify you personality: </label>
-         <input  type="checkbox" name="field" value="introvert" /> <label class="checkbox-label" for="business">Introvert</label>
-         <input  type="checkbox" name="field" value="extrovert" /> <label class="checkbox-label" for="engineering">Extrovert</label>
-         <br />
-         <input  type="checkbox" name="field" value="?1" /> <label class="checkbox-label" for="?1">？</label>
-         <input  type="checkbox" name="major" value="?2" /> <label class="checkbox-label" for="?2">？？</label>
+         <input  type="radio" name="field" value="introvert" required /> <label class="radio-label" for="business">Introvert</label>
+         <input  type="radio" name="field" value="extrovert" required/> <label class="radio-label" for="engineering">Extrovert</label>
+           <br>
+         <input  type="radio" name="field" value="?1" required/> <label class="radio-label" for="?1">？</label>
+         <input  type="radio" name="field" value="?2" required/> <label class="radio-label" for="?2">？？</label>
 
        </div>
 
        <div class="form-row">
          <label>Please specify your occupation: </label>
-         <textarea name="occupation" style="width: 180px;"></textarea>
+         <textarea name="occupation" style="width: 180px;" required></textarea>
        </div>
 
        <div class="form-row">
          <label>Use one word to describe your feeling today </label>
-         <textarea name="feeling" style="width: 180px;"></textarea>
+         <textarea name="feeling" style="width: 180px;" required></textarea>
        </div>
 
        <br />
