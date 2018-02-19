@@ -123,10 +123,12 @@ io.on('connection', function(socket){
 			room_pair[room] = new Pair();
 			room_pair[room].addUserA(id, json);
 			socket_name[socket.id] = 'User A';
+			socket.emit('identity', 0);
 		}
 		else {
 			room_pair[room].addUserB(id, json);
 			socket_name[socket.id] = 'User B';
+			socket.emit('identity', 1);
 			room ++;
 		}
 		id ++;
