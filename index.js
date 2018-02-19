@@ -36,6 +36,7 @@ class Pair {
 		this.userA = -1;
 		this.userB = -1;
 		this.record = [];
+		this.on = true;
 	}
 	addUserA(user, userInfo) {
 		this.users.push(user);
@@ -58,6 +59,12 @@ class Pair {
 			return this.userB;
 		}
 		return this.userA;
+	}
+	disable() { 
+		this.on = false;
+	}
+	isActive() {
+		return this.on;
 	}
 	addRecord(user, msg) {
 		this.record.push([user, msg]);
@@ -131,16 +138,20 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('disconnect', function(){
+		console.log('user ' + socket_user[socket.id] +' disconnected');
+		if (!room_pair[user_room[socket_user[socket.id]]].isActive()) {
+			return;
+		}
 		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_name[socket.id], "user "
 			+ socket_name[socket.id] + " has disconnected");
 		var otherUser = room_pair[user_room[socket_user[socket.id]]].getOtherUser(socket_user[socket.id]);
-		socket.leave('room' + user_room[socket_user[socket.id]]);
-		console.log('user ' + socket_user[socket.id] +' disconnected');
 		if (otherUser == -1) {
 			room ++;
 			return;
 		}
+		socket.leave('room' + user_room[socket_user[socket.id]]);
 		user_socket[otherUser].leave('room' + user_room[socket_user[socket.id]]);
+		room_pair[user_room[socket_user[socket.id]]].disable();
 		room_pair[user_room[socket_user[socket.id]]].printRecord();
 		room_pair[user_room[socket_user[socket.id]]].writeRecord();
 	});
