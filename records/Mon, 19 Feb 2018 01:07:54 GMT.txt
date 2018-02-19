@@ -1,0 +1,4 @@
+{"name":"asdf","age":"12","gender":"male","field":"introvert","occupation":"1","feeling":"1"}{"name":"2","age":"23","gender":"male","field":"introvert","occupation":"2","feeling":"2"}
+8, asdf
+8, asdf
+8, 

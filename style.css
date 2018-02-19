@@ -5,8 +5,9 @@
 
   }
 body { font: 13px Helvetica, Arial; }
-#chat_form {  padding: 10px; position: fixed; bottom: 0; width: 60%; }
-
+#chat_form { padding: 10px; position: fixed; bottom: 0; width: 60%; }
+#question_selection button{margin: 5px; margin-left: 20px; width: 70%; background: rgb(130, 224, 255); border: none; padding: 15px;}
+#question_selection{display: none; padding: 10px; position: fixed; bottom: 0; width: 60%;}
 #m {flex-grow: 1;
 border: 1px solid #dfdfdf;
 padding: 10px 15px;
@@ -17,7 +18,7 @@ width:90%;
 #send_button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 15px;}
 
 
-#messages { list-style-type: none; margin: 0; padding: 20px; width: 60%; float: left;}
+#messages { list-style-type: none; margin: 0; padding: 20px; width: 60%; float: left; }
 #messages li { border: 1px solid #e4e4e4;
 padding: 15px;
 margin-bottom: 15px; }

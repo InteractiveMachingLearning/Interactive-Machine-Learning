@@ -70,6 +70,8 @@
           <ul id="messages"></ul>
 
           <div id="information" style="padding:15px;position: fixed;left:60%;">
+              <label id="userType"></label>
+              <br>
               <p>Things You Need To Know:</p>
               <br>
               <p>1.xxxx</p>
@@ -85,13 +87,36 @@
     <form id="chat_form" action="">
       <input id="m" autocomplete="off" placeholder="Type a message.." /><button id="send_button">Send</button>
     </form>
+          <div id="question_selection">
+          <button id="q1" onclick="sendQuestion(0)">question1</button>
+              <br>
+         <button id="q2" onclick="sendQuestion(1)">question2</button>
+              <br>
+         <button id="q3" onclick="sendQuestion(2)">question3</button>
+          </div>
       </div>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       var id;
       var firstMsg = true;
-
+      var myQuestions;
+        var isUserB;
+        function sendQuestion(i)
+        {
+            var socket = io();
+            socket.emit('chat message',myQuestions[i]);
+            return false;
+        }
+        
+        function getQuestion(){
+            var question_array = [];
+            question_array[0] = "Q1";
+            question_array[1] = "Q2";
+            question_array[2] = "Q3";
+            myQuestions = question_array;
+            return question_array;
+        }    
       $(function () {
         var socket = io();
         $('form').submit(function(){
@@ -117,11 +142,33 @@
           $('#m').val('');
           return false;
         });
+        
+        
         socket.on('chat message', function(id, msg){
           var to_display = id.toString() + ": " + msg;
           $('#messages').append($('<li>').text(to_display));
-          window.scrollTo(0, document.body.scrollHeight);
+          window.scrollTo(0, document.body.scrollHeight); 
+            if(isUserB){
+                var question = getQuestion();
+                document.getElementById('q1').innerHTML = question[0];
+                document.getElementById('q2').innerHTML = question[1];
+                document.getElementById('q3').innerHTML = question[2];
+                console.log(question);
+            }
         });
+          
+         socket.on('identity', function(i){
+          isUserB = (i==1);
+             if(isUserB){
+                 console.log("UserB");
+                 document.getElementById('userType').innerHTML = 'You Are User B';
+                 document.getElementById('question_selection').style.display = 'block';
+                 document.getElementById('chat_form').style.display = 'none';
+             }else{
+                 document.getElementById('userType').innerHTML = 'You Are User A';
+             }
+        }); 
+          
         socket.on('id', function(i){
           $('#messages').append($('<li>').text(i.toString()));
           window.scrollTo(0, document.body.scrollHeight);
