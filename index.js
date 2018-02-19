@@ -35,6 +35,7 @@ class Pair {
 		this.users = [];
 		this.userA = -1;
 		this.userB = -1;
+		this.record = [];
 	}
 	addUserA(user, userInfo) {
 		this.users.push(user);
@@ -58,6 +59,27 @@ class Pair {
 		}
 		return this.userA;
 	}
+	addRecord(user, msg) {
+		this.record.push([user, msg]);
+	}
+	printRecord() {
+		console.log(this.userAInfo);
+		console.log(this.userBInfo);
+		console.log(this.record);
+
+	}
+	writeRecord() {
+		var dt = new Date();
+		var utc = dt.toUTCString();
+		var fs = require('fs');
+		var file = fs.createWriteStream('records/' + utc + ".txt");
+		file.on('error', function(err) {});
+		file.write(JSON.stringify(this.userAInfo));
+		file.write(JSON.stringify(this.userBInfo));
+		file.write('\n');
+		this.record.forEach(function(v) { file.write(v.join(', ') + '\n'); });
+		file.end();
+	}
 }
 
 
@@ -67,6 +89,7 @@ var user_room = {};
 var room_pair = {};
 var socket_name = {};
 var id = 0
+var room = 0
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -86,8 +109,9 @@ io.on('connection', function(socket){
 		console.log(json);
 		socket_user[socket.id] = id;
 		user_socket[id] = socket;
-		var room = Math.floor(id/2);
 		user_room[id] = room;
+		socket.join('room' + room);
+		console.log('user ' + id + ' connected to room ' + room);
 		if (room_pair[room] == undefined) {
 			room_pair[room] = new Pair();
 			room_pair[room].addUserA(id, json);
@@ -96,14 +120,14 @@ io.on('connection', function(socket){
 		else {
 			room_pair[room].addUserB(id, json);
 			socket_name[socket.id] = 'User B';
+			room ++;
 		}
-		socket.join('room' + room);
-		console.log('user ' + id + ' connected to room ' + room);
 		id ++;
 	});
 
 	socket.on('chat message', function(msg){
 		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_name[socket.id], msg);
+		room_pair[user_room[socket_user[socket.id]]].addRecord(socket_user[socket.id], msg);
 	});
 
 	socket.on('disconnect', function(){
@@ -111,8 +135,14 @@ io.on('connection', function(socket){
 			+ socket_name[socket.id] + " has disconnected");
 		var otherUser = room_pair[user_room[socket_user[socket.id]]].getOtherUser(socket_user[socket.id]);
 		socket.leave('room' + user_room[socket_user[socket.id]]);
-		user_socket[otherUser].leave('room' + user_room[socket_user[socket.id]]);
 		console.log('user ' + socket_user[socket.id] +' disconnected');
+		if (otherUser == -1) {
+			room ++;
+			return;
+		}
+		user_socket[otherUser].leave('room' + user_room[socket_user[socket.id]]);
+		room_pair[user_room[socket_user[socket.id]]].printRecord();
+		room_pair[user_room[socket_user[socket.id]]].writeRecord();
 	});
 });
 
