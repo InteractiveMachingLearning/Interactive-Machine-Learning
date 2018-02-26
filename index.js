@@ -157,15 +157,19 @@ class Pair {
 
 
 var fs = require('fs');
-var questions = [];
-var fileContents = fs.readFileSync('questions_dict2.txt');
+var fileContents = fs.readFileSync('questions_dict.txt');
 var questions_dict = JSON.parse(fileContents.toString());
 
 function getQuestions(){
 	var collection = [];
-	for (var i = 0; i < questions_dict.length; i++) {
-		var rnd = Math.floor(Math.random() * questions_dict[i].length); 
-		collection.push(questions_dict[i][rnd]);
+	// for (var i = 0; i < questions_dict.length; i++) {
+	// 	var rnd = Math.floor(Math.random() * questions_dict[i].length); 
+	// 	collection.push(questions_dict[i][rnd]);
+	// }
+	for (const key of Object.keys(questions_dict)) {
+    	var rnd = Math.floor(Math.random() * questions_dict[key].length); 
+    	var pair = [questions_dict[key][rnd], key]
+	 	collection.push(pair);
 	}
 	return collection;
 }
