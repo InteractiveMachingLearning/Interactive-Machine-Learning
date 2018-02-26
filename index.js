@@ -90,6 +90,90 @@ class Pair {
 }
 
 
+
+
+// var fs = require('fs');
+// var $ = jQuery = require('jQuery');
+// require('./node_modules/jquery/src/jquery.csv.js');
+
+// var sample = './questions.csv';
+// fs.readFile(sample, 'UTF-8', function (err, csv) {
+//   if (err) { console.log(err); }
+//   $.csv.toArrays(csv, {}, function (err, data) {
+//     if (err) { console.log(err); }
+//     for (var i = 0, len = data.length; i < len; i++) {
+//       console.log(data[i]);
+//     }
+//   });
+// });
+// var csv = require('csv'); 
+// var obj = csv(); 
+// function MyCSV(Fone, Ftwo, Fthree) {
+//     this.FieldOne = Fone;
+//     this.FieldTwo = Ftwo;
+//     this.FieldThree = Fthree;
+// }; 
+
+// var MyData = []; 
+// obj.from.path('./questions.csv').to.array(function (data) {
+//     for (var index = 0; index < data.length; index++) {
+//         MyData.push(new MyCSV(data[index][0], data[index][1], data[index][2]));
+//     }
+//     console.log(MyData);
+// });
+
+// var fs = require('fs');
+// var $ = jQuery = require('jquery');
+// $.csv = require('jquery-csv');
+
+// var questions;
+// var aaa = "ddddd";
+
+// function getCSV() {
+// 	var sample = './questions.csv';
+// 	fs.readFile(sample, 'UTF-8', function(err, csv) {
+// 		$.csv.toArrays(csv, {}, function(err, data) {
+// 			questions = JSON.parse(JSON.stringify(data));
+// 			//console.log(questions);
+// 			return questions[0][0];
+// 		});
+// 	});
+// }
+
+// questions = getCSV();
+// console.log(questions);
+
+// var questions = [];
+
+// var fs = require('fs');
+// fs.readFile('questions.csv', function(err, data) {
+//     if(err) throw err;
+//     var array = data.toString().split("\n");
+//     for(i in array) {
+//     	questions.push(array[i]);
+//         //console.log(array[i]);
+//     }
+// });
+
+
+var fs = require('fs');
+var questions = [];
+var fileContents = fs.readFileSync('questions_dict2.txt');
+var questions_dict = JSON.parse(fileContents.toString());
+
+function getQuestions(){
+	var collection = [];
+	for (var i = 0; i < questions_dict.length; i++) {
+		var rnd = Math.floor(Math.random() * questions_dict[i].length); 
+		collection.push(questions_dict[i][rnd]);
+	}
+	return collection;
+}
+
+var collection = getQuestions();
+console.log(collection);
+
+
 var socket_user = {};
 var user_socket = {};
 var user_room = {};
@@ -112,6 +196,7 @@ app.get('/style.css', function(req, res) {
 
 io.on('connection', function(socket){
 	console.log('someone connected to server');
+
 	socket.on('survey data', function(json){
 		console.log(json);
 		socket_user[socket.id] = id;
@@ -129,6 +214,8 @@ io.on('connection', function(socket){
 			room_pair[room].addUserB(id, json);
 			socket_name[socket.id] = 'User B';
 			socket.emit('identity', 1);
+			io.sockets.in('room'+ room).emit('chat message', 'System', 'Now both users have connected.');
+			io.sockets.in('room'+ room).emit('start signal', '');
 			room ++;
 		}
 		id ++;
@@ -137,6 +224,10 @@ io.on('connection', function(socket){
 	socket.on('chat message', function(msg){
 		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_name[socket.id], msg);
 		room_pair[user_room[socket_user[socket.id]]].addRecord(socket_user[socket.id], msg);
+	});
+
+	socket.on('get questions', function(){
+		socket.emit('questions', getQuestions());
 	});
 
 	socket.on('disconnect', function(){
