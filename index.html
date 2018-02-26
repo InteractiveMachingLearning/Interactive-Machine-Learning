@@ -100,6 +100,12 @@
          <button id="q2" onclick="sendQuestion(1)">question2</button>
               <br>
          <button id="q3" onclick="sendQuestion(2)">question3</button>
+             <br>
+         <button id="q4" onclick="sendQuestion(3)">question4</button>
+              <br>
+         <button id="q5" onclick="sendQuestion(4)">question5</button>
+              <br>
+         <button id="q6" onclick="sendQuestion(5)">question6</button>
           </div>
       </div>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
@@ -119,6 +125,9 @@
           document.getElementById('q1').disabled = true;
           document.getElementById('q2').disabled = true;
           document.getElementById('q3').disabled = true;
+          document.getElementById('q4').disabled = true;
+          document.getElementById('q5').disabled = true;
+          document.getElementById('q6').disabled = true;
 
         }
         function typing(){
@@ -129,6 +138,9 @@
           document.getElementById('q1').disabled = false;
           document.getElementById('q2').disabled = false;
           document.getElementById('q3').disabled = false;
+          document.getElementById('q4').disabled = false;
+          document.getElementById('q5').disabled = false;
+          document.getElementById('q6').disabled = false;
         }
         function sendQuestion(i)
         {
@@ -138,14 +150,7 @@
             return false;
         }
         
-        function getQuestion(){
-            var question_array = [];
-            question_array[0] = "Q1";
-            question_array[1] = "Q2";
-            question_array[2] = "Q3";
-            myQuestions = question_array;
-            return question_array;
-        }    
+
       $(function () {
         var socket = io();
         $('form').submit(function(){
@@ -184,10 +189,7 @@
           window.scrollTo(0, document.body.scrollHeight); 
           console.log(id.toString());
             if(isUserB){
-                var question = getQuestion();
-                document.getElementById('q1').innerHTML = question[0];
-                document.getElementById('q2').innerHTML = question[1];
-                document.getElementById('q3').innerHTML = question[2];
+                
                 if(id == "User A"){
                   typing();
                 }
@@ -197,11 +199,26 @@
                   typing();
                 }
             }
-            
+
+            if (id == "User A") {
+              socket.emit('get questions');
+            }
 
             
         });
           
+
+          socket.on('questions', function(questions){
+            
+              myQuestions = questions;
+              document.getElementById('q1').innerHTML = questions[0];
+              document.getElementById('q2').innerHTML = questions[1];
+              document.getElementById('q3').innerHTML = questions[2];
+              document.getElementById('q4').innerHTML = questions[3];
+              document.getElementById('q5').innerHTML = questions[4];
+              document.getElementById('q6').innerHTML = questions[5];
+            }); 
+
          socket.on('identity', function(i){
           isUserB = (i==1);
              if(isUserB){
