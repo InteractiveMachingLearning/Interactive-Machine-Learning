@@ -108,7 +108,7 @@
       var id;
       var firstMsg = true;
       var myQuestions;
-      // waiting();
+       waiting();
       var isUserB;
 
         function waiting()
@@ -213,7 +213,12 @@
                  document.getElementById('userType').innerHTML = 'You Are User A';
              }
         }); 
-          
+
+        socket.on('start signal', function(i){
+          if(!isUserB){
+            typing();
+          }
+        }); 
         socket.on('id', function(i){
           $('#messages').append($('<li>').text(i.toString()));
           window.scrollTo(0, document.body.scrollHeight);
