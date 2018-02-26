@@ -8,6 +8,10 @@ body { font: 13px Helvetica, Arial; }
 #chat_form { padding: 10px; position: fixed; bottom: 0; width: 60%; }
 #question_selection button{margin: 5px; margin-left: 20px; width: 70%; background: rgb(130, 224, 255); border: none; padding: 15px;}
 #question_selection{display: none; padding: 10px; position: fixed; bottom: 0; width: 50%;left:60%;}
+
+#binary_selection button{margin: 5px; margin-left: 20px; width: 70%; background: rgb(130, 224, 255); border: none; padding: 15px;}
+#binary_selection{display: none; padding: 10px; position: fixed; bottom: 0; width: 50%;left:60%;}
+
 #m {flex-grow: 1;
 border: 1px solid #dfdfdf;
 padding: 10px 15px;

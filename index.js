@@ -60,7 +60,7 @@ class Pair {
 		}
 		return this.userA;
 	}
-	disable() { 
+	disable() {
 		this.on = false;
 	}
 	isActive() {
@@ -106,15 +106,15 @@ class Pair {
 //     }
 //   });
 // });
-// var csv = require('csv'); 
-// var obj = csv(); 
+// var csv = require('csv');
+// var obj = csv();
 // function MyCSV(Fone, Ftwo, Fthree) {
 //     this.FieldOne = Fone;
 //     this.FieldTwo = Ftwo;
 //     this.FieldThree = Fthree;
-// }; 
+// };
 
-// var MyData = []; 
+// var MyData = [];
 // obj.from.path('./questions.csv').to.array(function (data) {
 //     for (var index = 0; index < data.length; index++) {
 //         MyData.push(new MyCSV(data[index][0], data[index][1], data[index][2]));
@@ -163,11 +163,11 @@ var questions_dict = JSON.parse(fileContents.toString());
 function getQuestions(){
 	var collection = [];
 	// for (var i = 0; i < questions_dict.length; i++) {
-	// 	var rnd = Math.floor(Math.random() * questions_dict[i].length); 
+	// 	var rnd = Math.floor(Math.random() * questions_dict[i].length);
 	// 	collection.push(questions_dict[i][rnd]);
 	// }
 	for (const key of Object.keys(questions_dict)) {
-    	var rnd = Math.floor(Math.random() * questions_dict[key].length); 
+    	var rnd = Math.floor(Math.random() * questions_dict[key].length);
     	var pair = [questions_dict[key][rnd], key]
 	 	collection.push(pair);
 	}

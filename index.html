@@ -78,16 +78,16 @@
               <p>1.xxxxxxxxx xxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxxxxx</p>
               <p>2.xxxxxxx xxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx</p>
               <p>3.xxxxxxxxx xxxxxxxx xxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx</p>
-              <br> 
+              <br>
               <br>
               <label id="notification"> notification </label>
               <br>
               <br>
               <br>
               <button style="background: red;width: 80px;height:50px;">Exit</button>
-        
 
-            
+
+
 
           </div>
       </div>
@@ -107,13 +107,22 @@
               <br>
          <button id="q6" onclick="sendQuestion(5)">question6</button>
           </div>
+
+
+          <!-- Binary reply for UserA -->
+          <div id="binary_selection">
+            <button id="Yes" onclick="sendBinaryReply(  'Yes'  )">Yes</button>
+            <br>
+            <button id="No" onclick="sendBinaryReply( 'No'  )">No</button>
+
+          </div>
       </div>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       var id;
       var firstMsg = true;
-      var myQuestions;
+      var myQuestions = [  [], []  ];
        waiting();
       var isUserB;
 
@@ -130,8 +139,8 @@
           document.getElementById('q6').disabled = true;
 
         }
-        function typing(){
-          
+        function typing()
+        {
           document.getElementById('m').disabled = false;
           document.getElementById('send_button').disabled = false;
           document.getElementById('notification').innerHTML = "It is Your Turn !!! ";
@@ -149,7 +158,13 @@
             waiting();
             return false;
         }
-        
+
+        function sendBinaryReply(i)
+        {
+          var socket = io();
+          socket.emit('chat message', i);
+          return false;
+        }
 
       $(function () {
         var socket = io();
@@ -168,9 +183,9 @@
             $.map(unindexed_array, function(n,i){
                 indexed_array[n['name']] = n['value'];
             });
-           
+
               socket.emit('survey data',indexed_array);
-              
+
             return false;
           }
           if(msg !== ''){
@@ -178,64 +193,94 @@
           $('#m').val('');
           waiting();
           }
-         
+
           return false;
         });
-        
-        
+
+
         socket.on('chat message', function(id, msg){
-          var to_display = id.toString() + ": " + msg;
+          var to_display;
+          if(id != "User B")
+          {
+            to_display = id.toString() + ": " + msg;
+          }
+          else{
+            to_display = id.toString() + ": " + msg[0];
+          }
+
+          console.log("The message is now " + msg);
+
           $('#messages').append($('<li>').text(to_display));
-          window.scrollTo(0, document.body.scrollHeight); 
+          window.scrollTo(0, document.body.scrollHeight);
           console.log(id.toString());
-            if(isUserB){
-                
-                if(id == "User A"){
+            if(isUserB)
+            {
+                if(id == "User A")
+                {
                   typing();
                 }
-            }else{
-              if(id == "User B"){
+            }
+            else
+            {
+              if(id == "User B")
+              {
                 console.log("test");
-                  typing();
-                }
+                typing();
+
+              }
+
+              currentQuestionType = msg[1];
+              console.log("CURRENT QUESTION TYPE IS " + currentQuestionType);
+
+              if(currentQuestionType == "BinaryObservable" || currentQuestionType == "BinarySensitive")
+              {
+                document.getElementById('binary_selection').style.display = 'block';
+                document.getElementById('chat_form').style.display = 'none';
+              }
+              else
+              {
+                document.getElementById('binary_selection').style.display = 'none';
+                document.getElementById('chat_form').style.display = 'block';
+
+              }
             }
 
             if (id == "User A") {
               socket.emit('get questions');
             }
 
-            
+
         });
-          
+
 
           socket.on('questions', function(questions){
-            
+
               myQuestions = questions;
-              document.getElementById('q1').innerHTML = questions[0];
-              document.getElementById('q2').innerHTML = questions[1];
-              document.getElementById('q3').innerHTML = questions[2];
-              document.getElementById('q4').innerHTML = questions[3];
-              document.getElementById('q5').innerHTML = questions[4];
-              document.getElementById('q6').innerHTML = questions[5];
-            }); 
+              document.getElementById('q1').innerHTML = questions[0][0];
+              document.getElementById('q2').innerHTML = questions[1][0];
+              document.getElementById('q3').innerHTML = questions[2][0];
+              document.getElementById('q4').innerHTML = questions[3][0];
+              document.getElementById('q5').innerHTML = questions[4][0];
+              document.getElementById('q6').innerHTML = questions[5][0];
+            });
 
          socket.on('identity', function(i){
           isUserB = (i==1);
              if(isUserB){
-                
+
                  document.getElementById('userType').innerHTML = 'You Are User B';
                  document.getElementById('question_selection').style.display = 'block';
                  document.getElementById('chat_form').style.display = 'none';
              }else{
                  document.getElementById('userType').innerHTML = 'You Are User A';
              }
-        }); 
+        });
 
         socket.on('start signal', function(i){
           if(!isUserB){
             typing();
           }
-        }); 
+        });
         socket.on('id', function(i){
           $('#messages').append($('<li>').text(i.toString()));
           window.scrollTo(0, document.body.scrollHeight);
