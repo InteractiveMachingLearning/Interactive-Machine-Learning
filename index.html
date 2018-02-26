@@ -72,15 +72,22 @@
           <div id="information" style="padding:15px;position: fixed;left:60%;">
               <label id="userType"></label>
               <br>
+              <br>
               <p>Things You Need To Know:</p>
               <br>
-              <p>1.xxxx</p>
-              <p>2.xxxx</p>
-              <p>3.xxxx</p>
+              <p>1.xxxxxxxxx xxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxxxxx</p>
+              <p>2.xxxxxxx xxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx</p>
+              <p>3.xxxxxxxxx xxxxxxxx xxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx</p>
+              <br> 
+              <br>
+              <label id="notification"> notification </label>
+              <br>
               <br>
               <br>
               <button style="background: red;width: 80px;height:50px;">Exit</button>
+        
 
+            
 
           </div>
       </div>
@@ -101,11 +108,33 @@
       var id;
       var firstMsg = true;
       var myQuestions;
-        var isUserB;
+      // waiting();
+      var isUserB;
+
+        function waiting()
+        {
+          document.getElementById('m').disabled = true;
+          document.getElementById('send_button').disabled = true;
+          document.getElementById('notification').innerHTML = "Waiting for Another User .... ";
+          document.getElementById('q1').disabled = true;
+          document.getElementById('q2').disabled = true;
+          document.getElementById('q3').disabled = true;
+
+        }
+        function typing(){
+          
+          document.getElementById('m').disabled = false;
+          document.getElementById('send_button').disabled = false;
+          document.getElementById('notification').innerHTML = "It is Your Turn !!! ";
+          document.getElementById('q1').disabled = false;
+          document.getElementById('q2').disabled = false;
+          document.getElementById('q3').disabled = false;
+        }
         function sendQuestion(i)
         {
             var socket = io();
             socket.emit('chat message',myQuestions[i]);
+            waiting();
             return false;
         }
         
@@ -134,12 +163,17 @@
             $.map(unindexed_array, function(n,i){
                 indexed_array[n['name']] = n['value'];
             });
-            console.log(indexed_array);
+           
               socket.emit('survey data',indexed_array);
+              
             return false;
           }
-          socket.emit('chat message', msg);
+          if(msg !== ''){
+            socket.emit('chat message', msg);
           $('#m').val('');
+          waiting();
+          }
+         
           return false;
         });
         
@@ -148,19 +182,30 @@
           var to_display = id.toString() + ": " + msg;
           $('#messages').append($('<li>').text(to_display));
           window.scrollTo(0, document.body.scrollHeight); 
+          console.log(id.toString());
             if(isUserB){
                 var question = getQuestion();
                 document.getElementById('q1').innerHTML = question[0];
                 document.getElementById('q2').innerHTML = question[1];
                 document.getElementById('q3').innerHTML = question[2];
-                console.log(question);
+                if(id == "User A"){
+                  typing();
+                }
+            }else{
+              if(id == "User B"){
+                console.log("test");
+                  typing();
+                }
             }
+            
+
+            
         });
           
          socket.on('identity', function(i){
           isUserB = (i==1);
              if(isUserB){
-                 console.log("UserB");
+                
                  document.getElementById('userType').innerHTML = 'You Are User B';
                  document.getElementById('question_selection').style.display = 'block';
                  document.getElementById('chat_form').style.display = 'none';
