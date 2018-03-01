@@ -163,6 +163,7 @@
         {
           var socket = io();
           socket.emit('chat message', i);
+          waiting();
           return false;
         }
 
