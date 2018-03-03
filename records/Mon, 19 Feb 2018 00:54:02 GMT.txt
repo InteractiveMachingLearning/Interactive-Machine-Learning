@@ -1,2 +1,0 @@
-{"name":"a","age":"21","gender":"male","field":"introvert","occupation":"dsg","feeling":"dsfg"}{"name":"b","age":"12","gender":"male","field":"introvert","occupation":"dfh","feeling":"dfh"}
-6, a

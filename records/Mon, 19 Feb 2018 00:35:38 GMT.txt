@@ -1,4 +1,0 @@
-{"name":"sad","age":"25","gender":"female","field":"?2","occupation":"sg","feeling":"dsfg"}{"name":"23","age":"23","gender":"female","field":"introvert","occupation":"dfsg","feeling":"dogs"}
-2, a
-3, b
-2, room 2

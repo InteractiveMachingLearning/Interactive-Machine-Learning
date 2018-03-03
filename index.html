@@ -1,293 +1,298 @@
 <!doctype html>
 <html>
-   <head>
-    <title>Socket.IO chat</title>
-    <style>
+<head>
+  <title>Socket.IO chat</title>
+  <style></style>
 
-    </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-    <link rel="stylesheet" href="style.css" />
+<body>
+  <div id="outercontainer">
+    <h3 style="text-align: center; color: #F2D7D5; font-family: Tw Cen MT;">PLEASE FILL OUT THE FORM BELOW</h3>
 
-  </head>
-  <body>
-     <div id="outercontainer">
-     <h3 style="text-align: center; color: #F2D7D5; font-family: Tw Cen MT;">PLEASE FILL OUT THE FORM BELOW</h3>
-
-     <form name="survey_form" id="survey_form" action="http://www.usc.edu/cgi-bin/form_handler" method="POST">
-
-       <div class="form-row">
-         <label for="name">Name: </label>   <input type="text" name="name" required />
-       </div>
-
-
-       <div class="form-row">
-         <label for="age">Age: </label>   <input type="number" name="age" required />
-       </div>
-
-       <div class="form-row">
-         <label>Gender: </label>
-         <input type="radio" name="gender" value="male" required />
-         <label class="radio-label" for="male">Male</label>
-         <input type="radio" name="gender" value="female" required/>
-         <label class="radio-label" for="female">Female</label>
-       </div>
-
-       <div class="form-row">
-         <label>Please specify you personality: </label>
-         <input  type="radio" name="field" value="introvert" required /> <label class="radio-label" for="business">Introvert</label>
-         <input  type="radio" name="field" value="extrovert" required/> <label class="radio-label" for="engineering">Extrovert</label>
-           <br>
-         <input  type="radio" name="field" value="?1" required/> <label class="radio-label" for="?1">？</label>
-         <input  type="radio" name="field" value="?2" required/> <label class="radio-label" for="?2">？？</label>
-
-       </div>
-
-       <div class="form-row">
-         <label>Please specify your occupation: </label>
-         <textarea name="occupation" style="width: 180px;" required></textarea>
-       </div>
-
-       <div class="form-row">
-         <label>Use one word to describe your feeling today </label>
-         <textarea name="feeling" style="width: 180px;" required></textarea>
-       </div>
-
-       <br />
-
-
-
-
-       <div style="text-align: center; ">
-         <!-- <input type="submit" style="width: 20em; height: 20em;" /> -->
-         <button name="submit"  >Submit</button>
-       </div>
-
-
-     </form>
-   </div>
-      <div id="chat_container">
-  <div id="container" style="width:100%;">
-          <ul id="messages"></ul>
-
-          <div id="information" style="padding:15px;position: fixed;left:60%;">
-              <label id="userType"></label>
-              <br>
-              <br>
-              <p>Things You Need To Know:</p>
-              <br>
-              <p>1.xxxxxxxxx xxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxxxxx</p>
-              <p>2.xxxxxxx xxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx</p>
-              <p>3.xxxxxxxxx xxxxxxxx xxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx</p>
-              <br>
-              <br>
-              <label id="notification"> notification </label>
-              <br>
-              <br>
-              <br>
-              <button style="background: red;width: 80px;height:50px;">Exit</button>
-
-
-
-
-          </div>
+    <form name="survey_form" id="survey_form" action="http://www.usc.edu/cgi-bin/form_handler" method="POST">
+      <div class="form-row">
+        <label for="name">Name: </label>   <input type="text" name="name" required />
       </div>
+
+      <div class="form-row">
+        <label for="age">Age: </label>   <input type="number" name="age" required />
+      </div>
+
+      <div class="form-row">
+        <label>Gender: </label>
+        <input type="radio" name="gender" value="male" required />
+        <label class="radio-label" for="male">Male</label>
+        <input type="radio" name="gender" value="female" required/>
+        <label class="radio-label" for="female">Female</label>
+      </div>
+
+      <div class="form-row">
+        <label>Please specify you personality: </label>
+        <input  type="radio" name="field" value="introvert" required /> <label class="radio-label" for="business">Introvert</label>
+        <input  type="radio" name="field" value="extrovert" required/> <label class="radio-label" for="engineering">Extrovert</label>
+        <br>
+        <input  type="radio" name="field" value="?1" required/> <label class="radio-label" for="?1">？</label>
+        <input  type="radio" name="field" value="?2" required/> <label class="radio-label" for="?2">？？</label>
+      </div>
+
+      <div class="form-row">
+        <label>Please specify your occupation: </label>
+        <textarea name="occupation" style="width: 180px;" required></textarea>
+      </div>
+
+      <div class="form-row">
+        <label>Use one word to describe your feeling today </label>
+        <textarea name="feeling" style="width: 180px;" required></textarea>
+      </div>
+
+      <br />
+
+
+
+
+      <div style="text-align: center; ">
+        <!-- <input type="submit" style="width: 20em; height: 20em;" /> -->
+        <button name="submit"  >Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="chat_container">
+    <div id="container" style="width:100%;">
+
+      <ul id="messages"></ul>
+
+      <div id="information" style="padding:15px;position: fixed;left:60%;">
+        <label id="userType"></label>
+        <br>
+        <br>
+        <p>Things You Need To Know:</p>
+        <br>
+        <p>1.xxxxxxxxx xxxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxxxxx</p>
+        <p>2.xxxxxxx xxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxx</p>
+        <p>3.xxxxxxxxx xxxxxxxx xxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx</p>
+        <br>
+        <br>
+        <label id="notification"> notification </label>
+        <br>
+        <br>
+        <br>
+        <button style="background: red;width: 80px;height:50px;">Exit</button>
+      </div>
+    </div>
+
     <form id="chat_form" action="">
       <input id="m" autocomplete="off" placeholder="Type a message.." /><button id="send_button">Send</button>
     </form>
-          <div id="question_selection">
-          <button id="q1" onclick="sendQuestion(0)">question1</button>
-              <br>
-         <button id="q2" onclick="sendQuestion(1)">question2</button>
-              <br>
-         <button id="q3" onclick="sendQuestion(2)">question3</button>
-             <br>
-         <button id="q4" onclick="sendQuestion(3)">question4</button>
-              <br>
-         <button id="q5" onclick="sendQuestion(4)">question5</button>
-              <br>
-         <button id="q6" onclick="sendQuestion(5)">question6</button>
-          </div>
 
-
-          <!-- Binary reply for UserA -->
-          <div id="binary_selection">
-            <button id="Yes" onclick="sendBinaryReply(  'Yes'  )">Yes</button>
-            <br>
-            <button id="No" onclick="sendBinaryReply( 'No'  )">No</button>
-
-          </div>
+    <div id="question_selection">
+      <button id="q1" onclick="sendQuestion(0)">question1</button>
+      <br>
+      <button id="q2" onclick="sendQuestion(1)">question2</button>
+      <br>
+      <button id="q3" onclick="sendQuestion(2)">question3</button>
+      <br>
+      <button id="q4" onclick="sendQuestion(3)">question4</button>
+      <br>
+      <button id="q5" onclick="sendQuestion(4)">question5</button>
+      <br>
+      <button id="q6" onclick="sendQuestion(5)">question6</button>
       </div>
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-      var id;
-      var firstMsg = true;
-      var myQuestions = [  [], []  ];
-       waiting();
-      var isUserB;
 
-        function waiting()
+      <!-- Binary reply for UserA -->
+      <div id="binary_selection">
+      <button id="Yes" onclick="sendBinaryReply(  'Yes'  )">Yes</button>
+      <br>
+      <button id="No" onclick="sendBinaryReply( 'No'  )">No</button>
+
+    </div>
+  </div>
+
+
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+  var id;
+  var firstMsg = true;
+  var myQuestions = [  [], []  ];
+  waiting();
+  var isUserB;
+
+  function waiting()
+  {
+    document.getElementById('m').disabled = true;
+    document.getElementById('send_button').disabled = true;
+    document.getElementById('notification').innerHTML = "Waiting for Another User .... ";
+    document.getElementById('q1').disabled = true;
+    document.getElementById('q2').disabled = true;
+    document.getElementById('q3').disabled = true;
+    document.getElementById('q4').disabled = true;
+    document.getElementById('q5').disabled = true;
+    document.getElementById('q6').disabled = true;
+  }
+
+  function typing()
+  {
+    document.getElementById('m').disabled = false;
+    document.getElementById('send_button').disabled = false;
+    document.getElementById('notification').innerHTML = "It is Your Turn !!! ";
+    document.getElementById('q1').disabled = false;
+    document.getElementById('q2').disabled = false;
+    document.getElementById('q3').disabled = false;
+    document.getElementById('q4').disabled = false;
+    document.getElementById('q5').disabled = false;
+    document.getElementById('q6').disabled = false;
+  }
+
+  function sendQuestion(i)
+  {
+    var socket = io();
+    socket.emit('chat message',myQuestions[i]);
+    waiting();
+    return false;
+  }
+
+  function sendBinaryReply(i)
+  {
+    var socket = io();
+    socket.emit('chat message', i);
+    waiting();
+    return false;
+  }
+
+  $(function () {
+    var socket = io();
+    $('form').submit(function(){
+      var msg = $('#m').val();
+      if(firstMsg)
+      {
+        firstMsg = false;
+
+        document.getElementById('outercontainer').style.display = 'none';
+        document.getElementById('chat_container').style.display = 'block';
+
+        var unindexed_array = $("#survey_form").serializeArray();
+        var indexed_array = {};
+        $.map(unindexed_array, function(n,i){
+          indexed_array[n['name']] = n['value'];
+        });
+
+        socket.emit('survey data',indexed_array);
+
+        return false;
+      }
+
+      if(msg !== '')
+      {
+        socket.emit('chat message', msg);
+        $('#m').val('');
+        waiting();
+      }
+
+      return false;
+    });
+
+    socket.on('chat message', function(id, msg)
+    {
+      var to_display;
+      if(id != "User B")
+      {
+        to_display = id.toString() + ": " + msg;
+      }
+      else
+      {
+        to_display = id.toString() + ": " + msg[0];
+      }
+
+      console.log("The message is now " + msg);
+
+      $('#messages').append($('<li>').text(to_display));
+      window.scrollTo(0, document.body.scrollHeight);
+      console.log(id.toString());
+      if(isUserB)
+      {
+        if(id == "User A")
         {
-          document.getElementById('m').disabled = true;
-          document.getElementById('send_button').disabled = true;
-          document.getElementById('notification').innerHTML = "Waiting for Another User .... ";
-          document.getElementById('q1').disabled = true;
-          document.getElementById('q2').disabled = true;
-          document.getElementById('q3').disabled = true;
-          document.getElementById('q4').disabled = true;
-          document.getElementById('q5').disabled = true;
-          document.getElementById('q6').disabled = true;
+          typing();
+        }
+      }
+      else
+      {
+        if(id == "User B")
+        {
+          console.log("test");
+          typing();
 
         }
-        function typing()
+
+        currentQuestionType = msg[1];
+        console.log("CURRENT QUESTION TYPE IS " + currentQuestionType);
+
+        if(currentQuestionType == "BinaryObservable" || currentQuestionType == "BinarySensitive")
         {
-          document.getElementById('m').disabled = false;
-          document.getElementById('send_button').disabled = false;
-          document.getElementById('notification').innerHTML = "It is Your Turn !!! ";
-          document.getElementById('q1').disabled = false;
-          document.getElementById('q2').disabled = false;
-          document.getElementById('q3').disabled = false;
-          document.getElementById('q4').disabled = false;
-          document.getElementById('q5').disabled = false;
-          document.getElementById('q6').disabled = false;
+          document.getElementById('binary_selection').style.display = 'block';
+          document.getElementById('chat_form').style.display = 'none';
         }
-        function sendQuestion(i)
+        else
         {
-            var socket = io();
-            socket.emit('chat message',myQuestions[i]);
-            waiting();
-            return false;
+          document.getElementById('binary_selection').style.display = 'none';
+          document.getElementById('chat_form').style.display = 'block';
+
         }
+      }
 
-        function sendBinaryReply(i)
-        {
-          var socket = io();
-          socket.emit('chat message', i);
-          waiting();
-          return false;
-        }
+      if (id == "User A")
+      {
+        socket.emit('get questions');
+      }
 
-      $(function () {
-        var socket = io();
-        $('form').submit(function(){
-          var msg = $('#m').val();
-          if(firstMsg)
-          {
-            firstMsg = false;
+    });
 
-            document.getElementById('outercontainer').style.display = 'none';
-            document.getElementById('chat_container').style.display = 'block';
+    socket.on('questions', function(questions)
+    {
+      myQuestions = questions;
+      document.getElementById('q1').innerHTML = questions[0][0];
+      document.getElementById('q2').innerHTML = questions[1][0];
+      document.getElementById('q3').innerHTML = questions[2][0];
+      document.getElementById('q4').innerHTML = questions[3][0];
+      document.getElementById('q5').innerHTML = questions[4][0];
+      document.getElementById('q6').innerHTML = questions[5][0];
+    });
 
+    socket.on('identity', function(i)
+    {
+      isUserB = (i==1);
+      if(isUserB)
+      {
+        document.getElementById('userType').innerHTML = 'You Are User B';
+        document.getElementById('question_selection').style.display = 'block';
+        document.getElementById('chat_form').style.display = 'none';
+      }
+      else
+      {
+        document.getElementById('userType').innerHTML = 'You Are User A';
+      }
+    });
 
-            var unindexed_array = $("#survey_form").serializeArray();
-            var indexed_array = {};
-            $.map(unindexed_array, function(n,i){
-                indexed_array[n['name']] = n['value'];
-            });
+    socket.on('start signal', function(i)
+    {
+      if(!isUserB)
+      {
+        typing();
+      }
+    });
 
-              socket.emit('survey data',indexed_array);
+    socket.on('id', function(i)
+    {
+      $('#messages').append($('<li>').text(i.toString()));
+      window.scrollTo(0, document.body.scrollHeight);
+      id = i;
+    });
+  });
+  </script>
 
-            return false;
-          }
-          if(msg !== ''){
-            socket.emit('chat message', msg);
-          $('#m').val('');
-          waiting();
-          }
+</body>
 
-          return false;
-        });
-
-
-        socket.on('chat message', function(id, msg){
-          var to_display;
-          if(id != "User B")
-          {
-            to_display = id.toString() + ": " + msg;
-          }
-          else{
-            to_display = id.toString() + ": " + msg[0];
-          }
-
-          console.log("The message is now " + msg);
-
-          $('#messages').append($('<li>').text(to_display));
-          window.scrollTo(0, document.body.scrollHeight);
-          console.log(id.toString());
-            if(isUserB)
-            {
-                if(id == "User A")
-                {
-                  typing();
-                }
-            }
-            else
-            {
-              if(id == "User B")
-              {
-                console.log("test");
-                typing();
-
-              }
-
-              currentQuestionType = msg[1];
-              console.log("CURRENT QUESTION TYPE IS " + currentQuestionType);
-
-              if(currentQuestionType == "BinaryObservable" || currentQuestionType == "BinarySensitive")
-              {
-                document.getElementById('binary_selection').style.display = 'block';
-                document.getElementById('chat_form').style.display = 'none';
-              }
-              else
-              {
-                document.getElementById('binary_selection').style.display = 'none';
-                document.getElementById('chat_form').style.display = 'block';
-
-              }
-            }
-
-            if (id == "User A") {
-              socket.emit('get questions');
-            }
-
-
-        });
-
-
-          socket.on('questions', function(questions){
-
-              myQuestions = questions;
-              document.getElementById('q1').innerHTML = questions[0][0];
-              document.getElementById('q2').innerHTML = questions[1][0];
-              document.getElementById('q3').innerHTML = questions[2][0];
-              document.getElementById('q4').innerHTML = questions[3][0];
-              document.getElementById('q5').innerHTML = questions[4][0];
-              document.getElementById('q6').innerHTML = questions[5][0];
-            });
-
-         socket.on('identity', function(i){
-          isUserB = (i==1);
-             if(isUserB){
-
-                 document.getElementById('userType').innerHTML = 'You Are User B';
-                 document.getElementById('question_selection').style.display = 'block';
-                 document.getElementById('chat_form').style.display = 'none';
-             }else{
-                 document.getElementById('userType').innerHTML = 'You Are User A';
-             }
-        });
-
-        socket.on('start signal', function(i){
-          if(!isUserB){
-            typing();
-          }
-        });
-        socket.on('id', function(i){
-          $('#messages').append($('<li>').text(i.toString()));
-          window.scrollTo(0, document.body.scrollHeight);
-          id = i;
-        });
-      });
-    </script>
-  </body>
 </html>

@@ -1,1 +1,0 @@
-{"name":"1","age":"12","gender":"male","field":"introvert","occupation":"1","feeling":"1"}{"name":"12","age":"12","gender":"male","field":"introvert","occupation":"12","feeling":"12"}
