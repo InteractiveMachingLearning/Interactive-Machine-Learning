@@ -126,6 +126,7 @@
       var myQuestions = [  [], []  ];
        waiting();
       var isUserB;
+      var checkIf18QuestionsAnswered = 0;
 
         function waiting()
         {
@@ -170,7 +171,7 @@
           waiting();
           return false;
         }
-  
+
       $(function () {
         var socket = io();
         $('form').submit(function(){
@@ -204,13 +205,23 @@
 
 
         socket.on('chat message', function(id, msg){
+          checkIf18QuestionsAnswered++;
           var to_display;
           if(id != "User B")
           {
             to_display = id.toString() + ": " + msg;
           }
-          else{
-            to_display = id.toString() + ": " + msg[0];
+          else
+          {
+            if(msg == "user User B has disconnected")
+            {
+              to_display = id.toString() + ": " + msg;
+            }
+            else
+            {
+              to_display = id.toString() + ": " + msg[0];
+            }
+
           }
 
           console.log("The message is now " + msg);
@@ -232,22 +243,23 @@
                 console.log("test");
                 typing();
 
+                currentQuestionType = msg[1];
+                console.log("CURRENT QUESTION TYPE IS " + currentQuestionType);
+
+                if(currentQuestionType == "BinaryObservable" || currentQuestionType == "BinarySensitive")
+                {
+                  document.getElementById('binary_selection').style.display = 'block';
+                  document.getElementById('chat_form').style.display = 'none';
+                }
+                else
+                {
+                  document.getElementById('binary_selection').style.display = 'none';
+                  document.getElementById('chat_form').style.display = 'block';
+
+                }
               }
 
-              currentQuestionType = msg[1];
-              console.log("CURRENT QUESTION TYPE IS " + currentQuestionType);
 
-              if(currentQuestionType == "BinaryObservable" || currentQuestionType == "BinarySensitive")
-              {
-                document.getElementById('binary_selection').style.display = 'block';
-                document.getElementById('chat_form').style.display = 'none';
-              }
-              else
-              {
-                document.getElementById('binary_selection').style.display = 'none';
-                document.getElementById('chat_form').style.display = 'block';
-
-              }
             }
 
             if (id == "User A") {
@@ -293,17 +305,30 @@
         });
 
         socket.on('serviceCode', function(i){
-          console.log("service code received");
-          serviceCode = i;
-          var completeMsg;
-          if(isUserB){
-           completeMsg = "You are done and here is your service code : " + i + "B" ;
-          }else{
-           completeMsg = "You are done and here is your service code : " + i + "A" ;
+
+          var realCheck = checkIf18QuestionsAnswered / 2;
+          if(realCheck > 3)
+          {
+            console.log("service code received");
+            serviceCode = i;
+            var completeMsg;
+            if(isUserB){
+             completeMsg = "You are done and here is your service code : " + i + "B" ;
+            }else{
+             completeMsg = "You are done and here is your service code : " + i + "A" ;
+            }
+            window.alert(completeMsg);
+            waiting();
           }
-          window.alert(completeMsg);
-          waiting();
-          document.getElementById("exitButton").disabled = true;  
+          else
+          {
+            console.log("no service code");
+            var completeMsg = "NO SERVICE CODE!!";
+            window.alert(completeMsg);
+            waiting();
+          }
+
+          document.getElementById("exitButton").disabled = true;
           document.getElementById('notification').innerHTML = "You are done with the experiment !!!";
           socket.disconnect();
         });
