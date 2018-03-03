@@ -1,0 +1,5 @@
+{"name":"124","age":"123","gender":"male","field":"introvert","occupation":"12","feeling":"41"}{"name":"124","age":"123","gender":"male","field":"introvert","occupation":"123","feeling":"412"}
+2, asdf
+3, Would you say that you are fearful of confrontation?,BinarySensitive
+2, Yes
+3, What do you think would change that?,ContinuationContinuation

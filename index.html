@@ -295,11 +295,17 @@
         socket.on('serviceCode', function(i){
           console.log("service code received");
           serviceCode = i;
-          var completeMsg = "You are done and here is your service code : " + i;
+          var completeMsg;
+          if(isUserB){
+           completeMsg = "You are done and here is your service code : " + i + "B" ;
+          }else{
+           completeMsg = "You are done and here is your service code : " + i + "A" ;
+          }
           window.alert(completeMsg);
           waiting();
           document.getElementById("exitButton").disabled = true;  
           document.getElementById('notification').innerHTML = "You are done with the experiment !!!";
+          socket.disconnect();
         });
       });
     </script>

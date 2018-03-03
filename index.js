@@ -245,7 +245,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('experiment complete', function(){
-		socket.emit('serviceCode', room_pair[user_room[socket_user[socket.id]]].serviceCode);
+		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('serviceCode',room_pair[user_room[socket_user[socket.id]]].serviceCode);
 	});
 
 	socket.on('disconnect', function(){
