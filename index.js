@@ -37,6 +37,7 @@ class Pair {
 		this.userB = -1;
 		this.record = [];
 		this.on = true;
+		this.serviceCode = makeServiceCode();
 	}
 	addUserA(user, userInfo) {
 		this.users.push(user);
@@ -174,6 +175,15 @@ function getQuestions(){
 	return collection;
 }
 
+function makeServiceCode() {
+	var text = "";
+	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+	for (var i = 0; i < 10; i++)
+	  text += possible.charAt(Math.floor(Math.random() * possible.length));
+  
+	return text;
+  }
 var collection = getQuestions();
 console.log(collection);
 
@@ -232,6 +242,10 @@ io.on('connection', function(socket){
 
 	socket.on('get questions', function(){
 		socket.emit('questions', getQuestions());
+	});
+
+	socket.on('experiment complete', function(){
+		socket.emit('serviceCode', room_pair[user_room[socket_user[socket.id]]].serviceCode);
 	});
 
 	socket.on('disconnect', function(){
