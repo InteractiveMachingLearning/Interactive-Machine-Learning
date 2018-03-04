@@ -70,19 +70,17 @@
           <ul id="messages"></ul>
 
           <div id="information" style="padding:15px;position: fixed;left:60%;">
-              <label id="userType"></label>
-              <br>
-              <br>
-              <p>Things You Need To Know:</p>
-              <br>
-              <ol>
-                <li>Wait 20 seconds to be connected to [an artificially intelligent (AI) agent, another user].</li>
-                <li>If connection exceeds 20 seconds, session will end and you will be paid for that time.</li>
-                <li>Once connected, respond to [the AI, the user] as you would in a typical text message conversation.</li>
-                <li>You will receive your reward after 20 rounds of dialog.</li>
+              <b><label id="userType"></label></b>
+            <br>
+              <p><b>Things You Need To Know:</b></p>
+             <ol>
+                <li>Wait for 20 seconds to be connected to another user.</li>
+                <!-- <li>If connection exceeds 20 seconds, session will end and you will be paid for that time.</li> -->
+                <!-- <li>Once connected, respond to [the AI, the user] as you would in a typical text message conversation.</li> -->
+                <li>Communicate as you would in a typical conversation.</li>
+                <li>You will need to complete 20 rounds of dialog.</li>
                 <li>After completing experiment, you will receive a service code</li>
             </ol>
-            <br>
             <ol>
                 <b>ATTENTION:</b>
                 <li><b>If you are User B, please select questions that make sense to human. Otherwise, you can not get the reward.</b></li>
@@ -95,11 +93,10 @@
               <p>2.If connection exceeds 20 seconds, session will end and you will be paid for that time</p>
               <p>3.After completing experiment, you will receive a service code</p> -->
               <br>
-              <br>
+            
               <label id="notification"> notification </label>
               <br>
-              <br>
-              <br>
+  
               <button id="exitButton" onclick="Exit()" style="background: red;width: 80px;height:50px;">Exit</button>
 
 
@@ -157,7 +154,8 @@
           document.getElementById('q4').disabled = true;
           document.getElementById('q5').disabled = true;
           document.getElementById('q6').disabled = true;
-
+          document.getElementById('Yes').disabled = true;
+          document.getElementById('No').disabled = true;
         }
         function typing()
         {
@@ -170,6 +168,8 @@
           document.getElementById('q4').disabled = false;
           document.getElementById('q5').disabled = false;
           document.getElementById('q6').disabled = false;
+          document.getElementById('Yes').disabled = false;
+          document.getElementById('No').disabled = false;
         }
         function sendQuestion(i)
         {
@@ -225,10 +225,6 @@
         socket.on('chat message', function(id, msg){
           conversationCounter++;
 
-          if(conversationCounter/2 == 5) // temporary upper bound of questions needed to be answered
-          {
-            Exit();
-          }
 
 
           var to_display;
@@ -291,7 +287,10 @@
               socket.emit('get questions');
             }
 
-
+            if(conversationCounter/2 == 5) // temporary upper bound of questions needed to be answered
+                      {
+                        Exit();
+                      }
         });
 
 
@@ -320,8 +319,10 @@
 
         socket.on('start signal', function(i){
           if(!isUserB){
-            typing();
+            waiting();
+            socket.emit('chat message',"Hi!");
           }
+        
         });
         socket.on('id', function(i){
           $('#messages').append($('<li>').text(i.toString()));
@@ -348,7 +349,7 @@
           else
           {
             console.log("no service code");
-            var completeMsg = "NO SERVICE CODE!!";
+            var completeMsg = "No service code because one user is disconnected";
             window.alert(completeMsg);
             waiting();
           }

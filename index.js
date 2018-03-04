@@ -253,6 +253,7 @@ io.on('connection', function(socket){
 		if (!room_pair[user_room[socket_user[socket.id]]].isActive()) {
 			return;
 		}
+		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('serviceCode',room_pair[user_room[socket_user[socket.id]]].serviceCode);
 		io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_name[socket.id], "user "
 			+ socket_name[socket.id] + " has disconnected");
 		var otherUser = room_pair[user_room[socket_user[socket.id]]].getOtherUser(socket_user[socket.id]);
@@ -260,11 +261,13 @@ io.on('connection', function(socket){
 			room ++;
 			return;
 		}
+		
 		socket.leave('room' + user_room[socket_user[socket.id]]);
 		user_socket[otherUser].leave('room' + user_room[socket_user[socket.id]]);
 		room_pair[user_room[socket_user[socket.id]]].disable();
 		room_pair[user_room[socket_user[socket.id]]].printRecord();
 		room_pair[user_room[socket_user[socket.id]]].writeRecord();
+		
 	});
 });
 
