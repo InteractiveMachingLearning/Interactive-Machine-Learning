@@ -126,7 +126,8 @@
       var myQuestions = [  [], []  ];
        waiting();
       var isUserB;
-      var checkIf18QuestionsAnswered = 0;
+      var conversationCounter = 0;
+      var questionCheckUpperBound = 18;
 
         function waiting()
         {
@@ -205,7 +206,14 @@
 
 
         socket.on('chat message', function(id, msg){
-          checkIf18QuestionsAnswered++;
+          conversationCounter++;
+
+          if(conversationCounter/2 == 5) // temporary upper bound of questions needed to be answered
+          {
+            Exit();
+          }
+
+
           var to_display;
           if(id != "User B")
           {
@@ -306,8 +314,8 @@
 
         socket.on('serviceCode', function(i){
 
-          var realCheck = checkIf18QuestionsAnswered / 2;
-          if(realCheck > 3)
+          var questionLowerBoundCheck = conversationCounter / 2;
+          if(questionLowerBoundCheck > 3) //temporary lower bound of questions needed to be answered
           {
             console.log("service code received");
             serviceCode = i;
