@@ -80,7 +80,7 @@ class Pair {
 		var dt = new Date();
 		var utc = dt.toUTCString();
 		var fs = require('fs');
-		var file = fs.createWriteStream('records/' + utc + ".txt");
+		var file = fs.createWriteStream('records/' + this.serviceCode + " " + utc + ".txt");
 		file.on('error', function(err) {});
 		file.write(JSON.stringify(this.userAInfo));
 		file.write(JSON.stringify(this.userBInfo));
@@ -178,10 +178,10 @@ function getQuestions(){
 function makeServiceCode() {
 	var text = "";
 	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  
+
 	for (var i = 0; i < 10; i++)
 	  text += possible.charAt(Math.floor(Math.random() * possible.length));
-  
+
 	return text;
   }
 var collection = getQuestions();
