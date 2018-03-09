@@ -250,6 +250,9 @@ io.on('connection', function(socket){
 
 	socket.on('disconnect', function(){
 		console.log('user ' + socket_user[socket.id] +' disconnected');
+		if (socket_user[socket.id] == undefined) {
+			return;
+		}
 		if (!room_pair[user_room[socket_user[socket.id]]].isActive()) {
 			return;
 		}
