@@ -80,7 +80,8 @@ class Pair {
 		var dt = new Date();
 		var utc = dt.toUTCString();
 		var fs = require('fs');
-		var file = fs.createWriteStream('records/' + this.serviceCode + " " + utc + ".txt");
+		//var file = fs.createWriteStream('records/' + this.serviceCode + " " + utc + ".txt");
+		var file = fs.createWriteStream('records/' + this.serviceCode + ".txt");
 		file.on('error', function(err) {});
 		file.write(JSON.stringify(this.userAInfo));
 		file.write(JSON.stringify(this.userBInfo));
@@ -264,13 +265,13 @@ io.on('connection', function(socket){
 			room ++;
 			return;
 		}
-		
+
 		socket.leave('room' + user_room[socket_user[socket.id]]);
 		user_socket[otherUser].leave('room' + user_room[socket_user[socket.id]]);
 		room_pair[user_room[socket_user[socket.id]]].disable();
 		room_pair[user_room[socket_user[socket.id]]].printRecord();
 		room_pair[user_room[socket_user[socket.id]]].writeRecord();
-		
+
 	});
 });
 
