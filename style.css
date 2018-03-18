@@ -4,7 +4,11 @@
     box-sizing: border-box;
 
   }
-body { font: 13px Helvetica, Arial; }
+body {
+  font: 13px Helvetica, Arial;
+  background-image: url(https://image.freepik.com/free-vector/dark-blue-watercolor-background-design_1034-737.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;}
 #chat_form { padding: 10px; position: fixed; bottom: 0; width: 60%; }
 #question_selection button{margin: 5px; margin-left: 20px; width: 70%; background: rgb(130, 224, 255); border: none; padding: 15px;}
 #question_selection{display: none; padding: 10px; position: fixed; bottom: 0; width: 50%;left:60%;}
@@ -47,7 +51,7 @@ margin-bottom: 10px;
 }
 
 label{
-width: 100px;
+width: 180px;
 float: left;
 text-align: right;
 margin-bottom: 10px;
@@ -59,7 +63,7 @@ margin-right: 5px;
    width: 100%;
    font-size: 20px;
  }
- 
+
 .radio-label{
 float: none;
 }
