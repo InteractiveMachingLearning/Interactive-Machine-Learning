@@ -37,8 +37,7 @@
          <input  type="radio" name="field" value="introvert" required /> <label class="radio-label" for="business">Introvert</label>
          <input  type="radio" name="field" value="extrovert" required/> <label class="radio-label" for="engineering">Extrovert</label>
            <br>
-         <input  type="radio" name="field" value="?1" required/> <label class="radio-label" for="?1">？</label>
-         <input  type="radio" name="field" value="?2" required/> <label class="radio-label" for="?2">？？</label>
+
 
        </div>
 
@@ -93,10 +92,10 @@
               <p>2.If connection exceeds 20 seconds, session will end and you will be paid for that time</p>
               <p>3.After completing experiment, you will receive a service code</p> -->
               <br>
-            
+
               <label id="notification"> notification </label>
               <br>
-  
+
               <button id="exitButton" onclick="Exit()" style="background: red;width: 80px;height:50px;">Exit</button>
 
 
@@ -324,7 +323,7 @@
             waiting();
             socket.emit('chat message',"Hi!");
           }
-        
+
         });
         socket.on('id', function(i){
           $('#messages').append($('<li>').text(i.toString()));
@@ -352,7 +351,7 @@
           {
             console.log("no service code");
             if(exitPressed){
-              var completeMsg = "No service code because you close the experiment";
+              var completeMsg = "No service code because you quit the experiment too early";
             }else{
                 if(isUserB){
               completeMsg = "You are done and here is your service code : " + i + "B" ;
