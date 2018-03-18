@@ -135,12 +135,13 @@
     <script>
       var id;
       var firstMsg = true;
-      var serviceCode = "service code"
+      var serviceCode = "service code";
+      var exitPressed = false;
       var myQuestions = [  [], []  ];
        waiting();
       var isUserB;
-      var conversationCounter = 0;
-      var questionCheckUpperBound = 18;
+      var conversationCounter = 2;
+      var questionCheckUpperBound = 5;
 
 
         function waiting()
@@ -180,6 +181,7 @@
         }
         function Exit(){
             var socket = io();
+            exitPressed = true;
             socket.emit('experiment complete');
         }
         function sendBinaryReply(i)
@@ -287,7 +289,7 @@
               socket.emit('get questions');
             }
 
-            if(conversationCounter/2 == 10) // temporary upper bound of questions needed to be answered
+            if(conversationCounter/2 == 4) // temporary upper bound of questions needed to be answered
                       {
                         Exit();
                       }
@@ -349,7 +351,15 @@
           else
           {
             console.log("no service code");
-            var completeMsg = "No service code because one user is disconnected";
+            if(exitPressed){
+              var completeMsg = "No service code because you close the experiment";
+            }else{
+                if(isUserB){
+              completeMsg = "You are done and here is your service code : " + i + "B" ;
+              }else{
+              completeMsg = "You are done and here is your service code : " + i + "A" ;
+              }
+            }
             window.alert(completeMsg);
             waiting();
           }
