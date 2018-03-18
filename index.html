@@ -11,7 +11,7 @@
   </head>
   <body>
      <div id="outercontainer">
-     <h3 style="text-align: center; color: #F2D7D5; font-family: Tw Cen MT;">PLEASE FILL OUT THE FORM BELOW</h3>
+     <h3 style="text-align: center; color: #F2D7D5; font-family: Tw Cen MT;margin-bottom: 20px;">PLEASE FILL OUT THE FORM BELOW</h3>
 
      <form name="survey_form" id="survey_form" action="http://www.usc.edu/cgi-bin/form_handler" method="POST">
 
@@ -33,7 +33,7 @@
        </div>
 
        <div class="form-row">
-         <label>Please specify you personality: </label>
+         <label>Personality: </label>
          <input  type="radio" name="field" value="introvert" required /> <label class="radio-label" for="business">Introvert</label>
          <input  type="radio" name="field" value="extrovert" required/> <label class="radio-label" for="engineering">Extrovert</label>
            <br>
@@ -42,7 +42,7 @@
        </div>
 
        <div class="form-row">
-         <label>Please specify your occupation: </label>
+         <label>Occupation: </label>
          <textarea name="occupation" style="width: 180px;" required></textarea>
        </div>
 
@@ -58,7 +58,7 @@
 
        <div style="text-align: center; ">
          <!-- <input type="submit" style="width: 20em; height: 20em;" /> -->
-         <button name="submit"  >Submit</button>
+         <button name="submit" style="width: 100px;height:30px;border:0px;background-color:lightskyblue" >Submit</button>
        </div>
 
 
@@ -68,7 +68,7 @@
   <div id="container" style="width:100%;">
           <ul id="messages"></ul>
 
-          <div id="information" style="padding:15px;position: fixed;left:60%;">
+          <div id="information" style="padding:30px;position: fixed;left:60%;background:rgba(255,255,255,0.2)">
               <b><label id="userType"></label></b>
             <br>
               <p><b>Things You Need To Know:</b></p>
@@ -96,7 +96,7 @@
               <label id="notification"> notification </label>
               <br>
 
-              <button id="exitButton" onclick="Exit()" style="background: red;width: 80px;height:50px;">Exit</button>
+              <button id="exitButton" onclick="Exit()" style="background: red;width: 80px;height:50px;margin-left:40%;border:2px solid; border-color:gray">Exit</button>
 
 
 
@@ -139,7 +139,7 @@
       var myQuestions = [  [], []  ];
        waiting();
       var isUserB;
-      var conversationCounter = 2;
+      var conversationCounter = -2;
       var questionCheckUpperBound = 5;
 
 
@@ -288,7 +288,7 @@
               socket.emit('get questions');
             }
 
-            if(conversationCounter/2 == 4) // temporary upper bound of questions needed to be answered
+            if(conversationCounter/2 == 6) // temporary upper bound of questions needed to be answered
                       {
                         Exit();
                       }
