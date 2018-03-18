@@ -73,18 +73,18 @@
             <br>
               <p><b>Things You Need To Know:</b></p>
              <ol>
-                <li>Wait for 20 seconds to be connected to another user.</li>
+                <!-- <li>Wait for 20 seconds to be connected to another user.</li> -->
                 <!-- <li>If connection exceeds 20 seconds, session will end and you will be paid for that time.</li> -->
                 <!-- <li>Once connected, respond to [the AI, the user] as you would in a typical text message conversation.</li> -->
                 <li>Communicate as you would in a typical conversation.</li>
-                <li>You will need to complete 20 rounds of dialog.</li>
+                <li>You will need to complete 18 rounds of dialog.</li>
                 <li>After completing experiment, you will receive a service code</li>
+                <li>Leaving conversation early, you will NOT recevie a service code</li>
             </ol>
             <ol>
                 <b>ATTENTION:</b>
                 <li><b>If you are User B, please select questions that make sense to human. Otherwise, you can not get the reward.</b></li>
-                <li><b>If you are User A, please provide responses relevant to questions. Your responses will be manmually reviewed by our
-                  faculty. Your reward depends on the quality of your responses</b></li>
+                <li><b>If you are User A, please provide responses relevant to questions. Your responses will be manmually reviewed. Your reward depends on the quality of your responses</b></li>
             </ol>
             <!-- <b>ATTENTION:.</b> -->
               <!-- <p>1.You need to answer/choose xx questions in total</p>
@@ -288,7 +288,7 @@
               socket.emit('get questions');
             }
 
-            if(conversationCounter/2 == 6) // temporary upper bound of questions needed to be answered
+            if(conversationCounter/2 == 18) // temporary upper bound of questions needed to be answered
                       {
                         Exit();
                       }
@@ -334,7 +334,7 @@
         socket.on('serviceCode', function(i){
 
           var questionLowerBoundCheck = conversationCounter / 2;
-          if(questionLowerBoundCheck > 3) //temporary lower bound of questions needed to be answered
+          if(questionLowerBoundCheck > 14) //temporary lower bound of questions needed to be answered
           {
             console.log("service code received");
             serviceCode = i;
