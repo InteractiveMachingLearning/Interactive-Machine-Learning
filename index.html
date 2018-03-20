@@ -132,7 +132,7 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      
+
       window.onbeforeunload = function() {
           return 'You have unsaved changes!';
       }
@@ -180,14 +180,10 @@
             waiting();
             return false;
         }
-        function Exit(){
-            var socket = io();
-            var r = confirm("Are you sure you want to leave?\nIf you leave too early, you can NOT receive the service code");
-            if (r == true) {
+        function Exit(){  
               var socket = io();
               exitPressed = true;
-              socket.emit('experiment complete');
-            } 
+              socket.emit('experiment complete');          
         }
         function sendBinaryReply(i)
         {
@@ -346,10 +342,10 @@
             serviceCode = i;
             var completeMsg;
             if(isUserB){
-             completeMsg = "You are done and here is your service code : " + i + "B" ;
-            }else{
-             completeMsg = "You are done and here is your service code : " + i + "A" ;
-            }
+              completeMsg = "You are done, thank you for your help! \nPlease copy the service code below and submit it in your Mechanical Turk job. \nYour service code is: \n " + i + "B" ;
+              }else{
+              completeMsg = "You are done, thank you for your help! \nPlease copy the service code below and submit it in your Mechanical Turk job. \nYour service code is: \n " + i + "A" ;
+              }
             window.alert(completeMsg);
             waiting();
           }
@@ -360,9 +356,9 @@
               var completeMsg = "No service code because you quit the experiment too early";
             }else{
                 if(isUserB){
-              completeMsg = "You are done and here is your service code : " + i + "B" ;
+              completeMsg = "You are done, thank you for your help! \nPlease copy the service code below and submit it in your Mechanical Turk job. \nYour service code is: \n " + i + "B" ;
               }else{
-              completeMsg = "You are done and here is your service code : " + i + "A" ;
+              completeMsg = "You are done, thank you for your help! \nPlease copy the service code below and submit it in your Mechanical Turk job. \nYour service code is: \n " + i + "A" ;
               }
             }
             window.alert(completeMsg);
@@ -370,7 +366,7 @@
           }
 
           document.getElementById("exitButton").disabled = true;
-          document.getElementById('notification').innerHTML = "You are done with the experiment !!!";
+          document.getElementById('notification').innerHTML = "The experiment is over. Thank you for your help!";
           socket.disconnect();
         });
       });
