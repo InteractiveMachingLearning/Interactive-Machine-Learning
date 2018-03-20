@@ -89,19 +89,21 @@ class Pair {
 		//var file = fs.createWriteStream('records/' + this.serviceCode + " " + utc + ".txt");
 
 		var file;
-		if(userbGarbageFlag == true) //userB selected a garbage question -> this file is useless
-		{
-			file = fs.createWriteStream('records/' + this.serviceCode + " UserBSelectedGarbage " + ".txt");
-		}
-		else
-		{
-			file = fs.createWriteStream('records/' + this.serviceCode + ".txt");
-		}
+
+		file = fs.createWriteStream('records/' + this.serviceCode + ".txt");
 		file.on('error', function(err) {});
 		file.write(JSON.stringify(this.userAInfo));
 		file.write(JSON.stringify(this.userBInfo));
 		file.write('\n');
 		this.record.forEach(function(v) { file.write(v.join(', ') + '\n'); });
+		if(userbGarbageFlag == true)
+		{
+			file.write('User A replied carefully; User B selected garbage questions. \n');
+		}
+		else
+		{
+			file.write('User A replied carefully; User B selected carefully. \n');
+		}
 		file.end();
 	}
 }
