@@ -77,7 +77,7 @@
                 <!-- <li>If connection exceeds 20 seconds, session will end and you will be paid for that time.</li> -->
                 <!-- <li>Once connected, respond to [the AI, the user] as you would in a typical text message conversation.</li> -->
                 <li>Communicate as you would in a typical conversation.</li>
-                <li>You will need to complete 18 rounds of dialog.</li>
+                <li>You will need to complete 15 rounds of dialog.</li>
                 <li>After completing experiment, you will receive a service code</li>
                 <li>Leaving conversation early, you will NOT recevie a service code</li>
             </ol>
@@ -92,11 +92,11 @@
               <p>2.If connection exceeds 20 seconds, session will end and you will be paid for that time</p>
               <p>3.After completing experiment, you will receive a service code</p> -->
               <br>
-
+              <b><label style=" float: left;text-align: center;width: 100%;font-size: 20px;"> You will receive the service code ONLY after completing conversation </label></b>
               <label id="notification"> notification </label>
               <br>
 
-              <button id="exitButton" onclick="Exit()" style="background: red;width: 80px;height:50px;margin-left:40%;border:2px solid; border-color:gray">Exit</button>
+              <button id="exitButton" onclick="Exit()" style="background: red;width: 80px;height:50px;margin-left:40%;border:2px solid; border-color:gray;display:none">Exit</button>
 
 
 
@@ -132,6 +132,10 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
+      
+      window.onbeforeunload = function() {
+          return 'You have unsaved changes!';
+      }
       var id;
       var firstMsg = true;
       var serviceCode = "service code";
@@ -140,9 +144,7 @@
        waiting();
       var isUserB;
       var conversationCounter = -2;
-      var questionCheckUpperBound = 5;
-
-
+      
         function waiting()
         {
           document.getElementById('m').disabled = true;
@@ -180,8 +182,12 @@
         }
         function Exit(){
             var socket = io();
-            exitPressed = true;
-            socket.emit('experiment complete');
+            var r = confirm("Are you sure you want to leave?\nIf you leave too early, you can NOT receive the service code");
+            if (r == true) {
+              var socket = io();
+              exitPressed = true;
+              socket.emit('experiment complete');
+            } 
         }
         function sendBinaryReply(i)
         {
@@ -288,7 +294,7 @@
               socket.emit('get questions');
             }
 
-            if(conversationCounter/2 == 18) // temporary upper bound of questions needed to be answered
+            if(conversationCounter/2 == 15) // temporary upper bound of questions needed to be answered
                       {
                         Exit();
                       }
@@ -334,7 +340,7 @@
         socket.on('serviceCode', function(i){
 
           var questionLowerBoundCheck = conversationCounter / 2;
-          if(questionLowerBoundCheck > 14) //temporary lower bound of questions needed to be answered
+          if(questionLowerBoundCheck > 10) //temporary lower bound of questions needed to be answered
           {
             console.log("service code received");
             serviceCode = i;
