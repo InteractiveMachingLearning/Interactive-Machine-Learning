@@ -8,6 +8,7 @@ app.use(cookieParser());
 
 var token_socket = {};
 
+var userbGarbageFlag = false;
 
 app.get('/hello', function(req, res){
 	res.send('<h1>Hello world</h1>');
@@ -69,6 +70,11 @@ class Pair {
 	}
 	addRecord(user, msg) {
 		this.record.push([user, msg]);
+		if(user == this.userB && msg[1] == 'Garbage')
+		{
+			console.log('UserB selected a garbage question');
+			userbGarbageFlag = true;
+		}
 	}
 	printRecord() {
 		console.log(this.userAInfo);
@@ -81,7 +87,16 @@ class Pair {
 		var utc = dt.toUTCString();
 		var fs = require('fs');
 		//var file = fs.createWriteStream('records/' + this.serviceCode + " " + utc + ".txt");
-		var file = fs.createWriteStream('records/' + this.serviceCode + ".txt");
+
+		var file;
+		if(userbGarbageFlag == true) //userB selected a garbage question -> this file is useless
+		{
+			file = fs.createWriteStream('records/' + this.serviceCode + " UserBSelectedGarbage " + ".txt");
+		}
+		else
+		{
+			file = fs.createWriteStream('records/' + this.serviceCode + ".txt");
+		}
 		file.on('error', function(err) {});
 		file.write(JSON.stringify(this.userAInfo));
 		file.write(JSON.stringify(this.userBInfo));
