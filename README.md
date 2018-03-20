@@ -1,5 +1,8 @@
 # Chat Example for Interactive Machine Learning
 
+
+This application is deployed on http://ec2-54-167-221-37.compute-1.amazonaws.com:3000/
+
 This is the source code for a very simple chat example used for
 the [Getting Started](http://socket.io/get-started/chat/) guide
 of the Socket.IO website.
