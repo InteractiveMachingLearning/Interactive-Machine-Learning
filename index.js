@@ -1,7 +1,17 @@
-var app = require('express')();
+//var app = require('express')();
+var express = require('express');
+var app = express();
+
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+
+
+
+var serveIndex = require('serve-index');
+app.use('/records', serveIndex('records')); // shows you the file list
+app.use('/records', express.static('records')); // serve the actual files
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -92,19 +102,25 @@ class Pair {
 
 		file = fs.createWriteStream('records/' + this.serviceCode + ".txt");
 		file.on('error', function(err) {});
-		file.write(JSON.stringify(this.userAInfo));
-		file.write(JSON.stringify(this.userBInfo));
-		file.write('\n');
-		this.record.forEach(function(v) { file.write(v.join(', ') + '\n'); });
-		if(userbGarbageFlag == true)
-		{
-			file.write('User A replied carefully; User B selected garbage questions. \n');
-		}
-		else
-		{
-			file.write('User A replied carefully; User B selected carefully. \n');
-		}
-		file.end();
+		var out = {};
+		out["userAInfo"] = this.userAInfo;
+		out["userBinfo"] = this.userBInfo;
+		out["records"] = this.record;
+		file.write(JSON.stringify(out));
+
+	// 	file.write(JSON.stringify(this.userAInfo));
+	// 	file.write(JSON.stringify(this.userBInfo));
+	// 	file.write('\n');
+	// 	this.record.forEach(function(v) { file.write(v.join(', ') + '\n'); });
+	// 	if(userbGarbageFlag == true)
+	// 	{
+	// 		file.write('User A replied carefully; User B selected garbage questions. \n');
+	// 	}
+	// 	else
+	// 	{
+	// 		file.write('User A replied carefully; User B selected carefully. \n');
+	// 	}
+	 	file.end();
 	}
 }
 
