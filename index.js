@@ -41,6 +41,11 @@ app.post('/form', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
 });
 
+app.post('/validate', function(req, res) {
+	console.log(req.body);
+	res.send('<h1>Got it</h1>');
+});
+
 class Pair {
 	constructor() {
 		this.users = [];
