@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Upload file to server</h3>
+
+<input type="file" id="file">
+<br>
+<div id="rewardsTableContainer"></div>
+
+
+
+<!-- <form id="uploadbanner" enctype="multipart/form-data" method="post" action="">
+    <input id="fileupload" name="myfile" type="file" />
+    <input type="submit" value="submit" id="submit" />
+ </form> -->
+ <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script  >
+    var serviceCodes = new Array();
+    // var fileInput = document.getElementById("csv"),
+    // readFile = function () {
+    //     var reader = new FileReader();
+    //     reader.onload = function () {
+    //         document.getElementById('out').innerHTML = reader.result;
+    //     };
+    //     // start reading the file. When it is done, calls the onload event defined above.
+    //     reader.readAsBinaryString(fileInput.files[0]);
+    // };
+
+    // fileInput.addEventListener('change', readFile);
+    var rewardTable = document.createElement("TABLE");
+    rewardTable.setAttribute("id", "rewardTable");
+    var rewardsTableContainer = document.getElementById("rewardsTableContainer");
+    
+
+    document.getElementById('file').onchange = function(){
+    var file = this.files[0];
+    var reader = new FileReader();
+    reader.onload = function(progressEvent){
+    // Entire file
+    console.log(this.result);
+
+    //clear reward table
+    
+    
+
+    // By lines    
+    var lines = this.result.replace(/\r/g,'').split('\n');
+    serviceCodes = lines;
+    // for(var line = 0; line < lines.length; line++){
+    //     console.log(lines[line]);
+    // }
+    var formData = JSON.stringify(serviceCodes);
+
+    
+    $.ajax({
+    type: "POST",
+    url: "http://localhost:3000/validate",
+    data: formData,
+    success: function(data){
+        var rewards = data;
+        for(var i = 0; i < rewards.length; i++){
+            /*
+            var y = document.createElement("TR");
+            y.setAttribute("id", "myTr");
+            document.getElementById("myTable").appendChild(y);
+           
+            var z = document.createElement("TD");
+            var t = document.createTextNode(serviceCodes[i] );
+            z.appendChild(t);
+            document.getElementById("myTr").appendChild(z);
+
+            var z2 = document.createElement("TD");
+            var t2 = document.createTextNode(rewards[i] );
+            z2.appendChild(t2);
+            document.getElementById("myTr").appendChild(z2);
+            
+            x.appendChild(y);
+            */
+
+           var row = document.createElement('tr');
+           var codeCell = document.createElement('td');
+           var rewardCell = document.createElement('td');
+           codeCell.innerHTML = serviceCodes[i];
+           rewardCell.innerHTML = rewards[i];
+           row.appendChild(codeCell);
+           row.appendChild(rewardCell);
+           rewardTable.append(row);
+           rewardsTableContainer.innerHTML = "";
+           rewardsTableContainer.appendChild(rewardTable);
+
+    //    var rewardList = "<li>" + serviceCodes[i] +  "----- " + rewards[i] + "</li>";
+    //    document.getElementById("rewards").innerHTML += rewardList;
+    }
+    },
+    dataType: "json",
+    contentType : "application/json"
+    });
+
+
+    console.log(formData);
+    };
+    reader.readAsText(file);
+    };
+
+
+
+
+</script>
+
+</body>
+</html>
+
