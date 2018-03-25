@@ -13,7 +13,8 @@ app.use('/records', serveIndex('records')); // shows you the file list
 app.use('/records', express.static('records')); // serve the actual files
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 
 var token_socket = {};
@@ -45,6 +46,13 @@ app.post('/validate', function(req, res) {
 	console.log(req.body);
 	res.send('<h1>Got it</h1>');
 });
+
+// app.post('/login',function(req,res){
+//   var user_name=req.body.user;
+//   var password=req.body.password;
+//   console.log("User name = "+user_name+", password is "+password);
+//   res.end("yes");
+// });
 
 class Pair {
 	constructor() {
