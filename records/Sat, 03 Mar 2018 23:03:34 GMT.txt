@@ -1,3 +1,0 @@
-{"name":"pdf","age":"7","gender":"male","field":"introvert","occupation":"23","feeling":"23"}{"name":"12","age":"9","gender":"male","field":"introvert","occupation":"12","feeling":"12"}
-0, sdf
-1, How many hippos do you have?,Garbage

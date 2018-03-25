@@ -1,5 +1,0 @@
-{"name":"123","age":"124","gender":"male","field":"introvert","occupation":"124","feeling":"123"}{"name":"345","age":"123","gender":"male","field":"introvert","occupation":"123","feeling":"51"}
-4, dfg
-5, When was the last time you experienced a hot and/or cold flash?,Open-endedObservable
-4, asg
-5, How many hippos do you have?,Garbage

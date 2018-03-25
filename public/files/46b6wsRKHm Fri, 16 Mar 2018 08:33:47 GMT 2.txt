@@ -1,7 +1,0 @@
-{"name":"1","age":"1","gender":"male","field":"introvert","occupation":"1","feeling":"1"}{"name":"2","age":"2","gender":"male","field":"introvert","occupation":"33","feeling":"333"}
-2, Hi!
-3, How many hippos do you have?,Garbage
-2, zero
-3, How did you cope with the last time things did not go your way?,Open-endedObservable
-2, fuck you
-3, Tell me about the last time you felt totally relaxed.,Open-endedObservable

@@ -1,3 +1,0 @@
-{"name":"123","age":"4","gender":"male","field":"introvert","occupation":"54","feeling":"45"}{"name":"678","age":"567","gender":"male","field":"introvert","occupation":"56","feeling":"df"}
-2, asdf
-3, Would you describe yourself as a private person?,BinarySensitive
