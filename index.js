@@ -44,7 +44,11 @@ app.post('/form', function(req, res) {
 
 app.post('/validate', function(req, res) {
 	console.log(req.body);
-	res.send('<h1>Got it</h1>');
+	var ret = [];
+	for (var i = 0, len = req.body.length; i < len; i++) {
+       ret.push(i);
+	}
+	res.send(ret);
 });
 
 // app.post('/login',function(req,res){
