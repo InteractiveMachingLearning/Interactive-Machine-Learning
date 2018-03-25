@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+ <head>
+   <title>Survey</title>
+   <link rel="stylesheet" type="text/css" href="style.css">
+ </head>
+
+ <body>
+   <div id="outercontainer">
+     <h3 style="text-align: center; color: #F2D7D5; font-family: Tw Cen MT;">PLEASE FILL OUT THE FORM BELOW</h3>
+
+     <form action="http://127.0.0.1:3000/form" method="POST">
+
+       <div class="form-row">
+         <label for="name">Name: </label>   <input type="text" name="name" />
+       </div>
+
+
+       <div class="form-row">
+         <label for="age">Age: </label>   <input type="text" name="age" />
+       </div>
+
+       <div class="form-row">
+         <label>Gender: </label>
+         <input type="radio" name="gender" value="male"/>
+         <label class="radio-label" for="male">Male</label>
+         <input type="radio" name="gender" value="female"/>
+         <label class="radio-label" for="female">Female</label>
+       </div>
+
+       <div class="form-row">
+         <label>Please specify you personality: </label>
+         <input  type="checkbox" name="field" value="introvert" /> <label class="checkbox-label" for="business">Introvert</label>
+         <input  type="checkbox" name="field" value="extrovert" /> <label class="checkbox-label" for="engineering">Extrovert</label>
+         <br />
+         <!-- <input  type="checkbox" name="field" value="?1" /> <label class="checkbox-label" for="?1">？</label>
+         <input  type="checkbox" name="field" value="?2" /> <label class="checkbox-label" for="?2">？？</label> -->
+
+       </div>
+
+       <div class="form-row">
+         <label>Please specify your occupation: </label>
+         <textarea name="occupation" style="width: 180px;"></textarea>
+       </div>
+
+       <div class="form-row">
+         <label>Use one word to describe your feeling today </label>
+         <textarea name="feeling" style="width: 180px;"></textarea>
+       </div>
+
+       <br />
+
+
+
+
+       <div style="text-align: center; ">
+         <!-- <input type="submit" style="width: 20em; height: 20em;" /> -->
+         <button name="submit">Submit</button>
+       </div>
+
+
+     </form>
+   </div>
+ </body>
+</html>
