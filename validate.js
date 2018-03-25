@@ -3,7 +3,7 @@ var cnl = require('./checkNaturalLanguage.js');
 
 function validateRecords(serviceCodes)
 {
-	const serviceCodeLength = 3;
+	const serviceCodeLength = 11;
 	var rewards = [];
 	for(var i = 0; i < serviceCodes.length; i++)
 	{
