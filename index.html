@@ -68,25 +68,21 @@
   <div id="container" style="width:100%;">
           <ul id="messages"></ul>
 
-          <div id="information" style="padding:30px;position: fixed;left:60%;background:rgba(255,255,255,0.2); color:white; line-height: 15pt;">
-              <b><label id="userType" style="font-size: 20px; text-align: left;"></label></b>
-              <br />
-              <br />
+          <div id="information" style="padding:24px;position: fixed;left:60%;background:rgba(255,255,255,0.2); color:white; line-height: 15pt;">
               <b style="font-size: 18px; text-align: left;">Things You Need To Know:</b>
               <ol style="font-size: 14px;">
                 <!-- <li>Wait for 20 seconds to be connected to another user.</li> -->
                 <!-- <li>If connection exceeds 20 seconds, session will end and you will be paid for that time.</li> -->
                 <!-- <li>Once connected, respond to [the AI, the user] as you would in a typical text message conversation.</li> -->
-                <li>Communicate as you would in a typical conversation.</li>
+                <li><labe id='userType'></label>></li>
                 <li>You will need to complete 15 rounds of dialog.</li>
                 <li>After completing experiment, you will receive a service code</li>
-                <li>Leaving conversation early, you will NOT recevie a service code</li>
+                <li><b>Leaving conversation too early, you will NOT recevie a service code</b></li>
               </ol>
               <br />
               <ol>
                 <b style="font-size: 18px;">ATTENTION:</b>
-                <li style="font-size: 14px;">If you are User B, please select questions that make sense to human. Otherwise, you can not get the reward.</li>
-                <li style="font-size: 14px;">If you are User A, please provide responses relevant to questions. Your responses will be manmually reviewed. Your reward depends on the quality of your responses</li>
+                <li id="attention" style="font-size: 14px;"></li>
               </ol>
             <!-- <b>ATTENTION:.</b> -->
               <!-- <p>1.You need to answer/choose xx questions in total</p>
@@ -94,10 +90,10 @@
               <p>2.If connection exceeds 20 seconds, session will end and you will be paid for that time</p>
               <p>3.After completing experiment, you will receive a service code</p> -->
               <br />
-              <b><label style=" float: left;text-align: center;width: 100%;font-size: 20px;"> You will receive the service code ONLY after completing conversation </label></b>
+              <b><label style=" float: left;text-align: center;width: 100%;font-size: 20px;"> You will receive more rewards if you answer or ask more questions </label></b>
               <label id="notification"> notification </label>
               <br>
-
+              <label id="roundNumber"> Round 0 </label>
               <button id="exitButton" onclick="Exit()" style="background: red;width: 80px;height:50px;margin-left:40%;border:2px solid; border-color:gray;display:none">Exit</button>
 
 
@@ -146,7 +142,7 @@
        waiting();
       var isUserB;
       var conversationCounter = -2;
-
+      
         function waiting()
         {
           document.getElementById('m').disabled = true;
@@ -229,7 +225,7 @@
 
         socket.on('chat message', function(id, msg){
           conversationCounter++;
-
+          document.getElementById('roundNumber').innerHTML = 'Round ' +  Math.floor(( conversationCounter/2 )+1);
 
 
           var to_display;
@@ -314,11 +310,13 @@
           isUserB = (i==1);
              if(isUserB){
 
-                 document.getElementById('userType').innerHTML = 'You Are User B';
+                 document.getElementById('userType').innerHTML = 'Imaging you are a robot talking to human';
                  document.getElementById('question_selection').style.display = 'block';
                  document.getElementById('chat_form').style.display = 'none';
+                 document.getElementById('attention').innerHTML = 'Please select questions that make sense to human. Otherwise, you can not get the reward';
              }else{
-                 document.getElementById('userType').innerHTML = 'You Are User A';
+                 document.getElementById('userType').innerHTML = 'Imaging you are a human talking to robot';
+                 document.getElementById('attention').innerHTML = 'Please provide responses relevant to questions. Your responses will be manmually reviewed. Your reward depends on the quality of your responses';
              }
         });
 
