@@ -1,5 +1,5 @@
 
-var cnl = require('./checkNaturalLanguage.js');
+var cnl = require('./checkNaturalLanguage');
 
 function validateRecords(serviceCodes)
 {
