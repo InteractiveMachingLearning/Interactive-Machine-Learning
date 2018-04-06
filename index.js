@@ -127,6 +127,8 @@ class Pair {
 		out["userAInfo"] = this.userAInfo;
 		out["userBinfo"] = this.userBInfo;
 		out["records"] = this.record;
+		out["userAReward"] = this.userAReward;
+		out["userBReward"] = this.userBReward;
 		file.write(JSON.stringify(out));
 
 	// 	file.write(JSON.stringify(this.userAInfo));
