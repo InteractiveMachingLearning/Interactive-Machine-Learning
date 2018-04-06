@@ -13,6 +13,13 @@ const translate = new Translate({
 
 module.exports =
 {
+	/*
+	test:function()
+	{
+		console.log("hello");
+	}
+	*/
+	
 	isSentenceValid:function(text) // test if userA input a natural language
 	{
 	  var isValid;
@@ -51,6 +58,7 @@ module.exports =
 		});
 
 	}
+
 }
 
 // test = "Newsletter goggle venmo iphone";
