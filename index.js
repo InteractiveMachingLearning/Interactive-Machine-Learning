@@ -154,7 +154,7 @@ class Pair {
 	}
 	userBAddReward() {
 		if (this.recordCount > 11) {
-			this.userAReward += 0.04;
+			this.userBReward += 0.04;
 		}
 	}
 	getAReward() {
