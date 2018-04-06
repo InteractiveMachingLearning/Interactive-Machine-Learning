@@ -106,7 +106,7 @@ function validate(serviceCode)
 
 var serviceCode = ["AZeSdVZngFA"];
 var rewards = validateRecords(serviceCode);
-console.log(rewards);
+console.log("user A reward: "+rewards);
 var serviceCode = ["AZeSdVZngFB"];
 var rewards = validateRecords(serviceCode);
-console.log(rewards);
+console.log("user B reward: "rewards);
