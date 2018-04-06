@@ -75,22 +75,19 @@
                 <!-- <li>If connection exceeds 20 seconds, session will end and you will be paid for that time.</li> -->
                 <!-- <li>Once connected, respond to [the AI, the user] as you would in a typical text message conversation.</li> -->
                 <li><labe id='userType'></label>></li>
-                <li>You will need to complete 15 rounds of dialog.</li>
+                <li>You will need to complete a max of 15 rounds of dialog.</li>
                 <li>After completing experiment, you will receive a service code</li>
-                <li><b>Leaving conversation too early, you will NOT recevie a service code</b></li>
-                </ol>
-              <ol>
-
-                <b style="font-size: 15px;">ATTENTION:</b>
+                <li><b>Leaving conversation before the 5th round, you will NOT recevie a service code</b></li>
                 <li id="attention" style="font-size: 14px;"></li>
-              </ol>
+                </ol>
+             
             <!-- <b>ATTENTION:.</b> -->
               <!-- <p>1.You need to answer/choose xx questions in total</p>
               <p>Wait 20 seconds to be connected to [an artificially intelligent (AI) agent, another user].</p>
               <p>2.If connection exceeds 20 seconds, session will end and you will be paid for that time</p>
               <p>3.After completing experiment, you will receive a service code</p> -->
 
-              <b><label style=" float: left;text-align: center;width: 100%;font-size: 20px;"> You will receive more rewards if you answer or ask more questions </label></b>
+              <b><label style=" float: left;text-align: center;width: 100%;font-size: 20px;"> You will receive $0.04 for every round after 5th round, with a max reward of $0.45. Garbage answer or question will result in reward penalty. </label></b>
               <label id="notification"> notification </label>
 
               <label id="roundNumber"> Round 0 </label>
@@ -232,7 +229,7 @@
 
         socket.on('chat message', function(id, msg){
           conversationCounter++;
-          document.getElementById('roundNumber').innerHTML = 'Round ' +  Math.floor(( conversationCounter/2 )+1);
+          document.getElementById('roundNumber').innerHTML = 'Round ' +  Math.floor(( conversationCounter/2 ));
 
 
           var to_display;
@@ -326,7 +323,7 @@
                  document.getElementById('userType').innerHTML = 'Imaging you are a robot talking to human';
                  document.getElementById('question_selection').style.display = 'block';
                  document.getElementById('chat_form').style.display = 'none';
-                 document.getElementById('attention').innerHTML = 'Please select questions that make sense to human. Otherwise, you can not get the reward';
+                 document.getElementById('attention').innerHTML = 'Please select questions that make sense to human.';
              }else{
                  document.getElementById('userType').innerHTML = 'Imaging you are a human talking to robot';
                  document.getElementById('attention').innerHTML = 'Please provide responses relevant to questions. Your responses will be manmually reviewed. Your reward depends on the quality of your responses';
@@ -343,6 +340,7 @@
 
         socket.on('current reward',function(rewards){
           document.getElementById('rewards').innerHTML = "Your Current is $" + rewards;
+
         });
 
 
