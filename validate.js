@@ -104,6 +104,9 @@ function validate(serviceCode)
 
 }
 
-var serviceCode = ["11A"];
+var serviceCode = ["AZeSdVZngFA"];
+var rewards = validateRecords(serviceCode);
+console.log(rewards);
+var serviceCode = ["AZeSdVZngFB"];
 var rewards = validateRecords(serviceCode);
 console.log(rewards);
