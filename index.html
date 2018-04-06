@@ -94,7 +94,7 @@
               <label id="notification"> notification </label>
 
               <label id="roundNumber"> Round 0 </label>
-              <label id="rewards"> Your Current rewards is $0 </label>
+              <label id="rewards"> Your Current rewards is $-1 </label>
               <button id="exitButton" onclick="Exit()" style="background: red;width: 80px;height:50px;margin-left:40%;border:2px solid; border-color:gray;display:none">Exit</button>
 
 
@@ -341,11 +341,8 @@
 
         });
 
-        socket.on('current reward',function(id){
-
-              document.getElementById('rewards').innerHTML = "Your Current is $" + rewards;
-
-          }
+        socket.on('current reward',function(rewards){
+          document.getElementById('rewards').innerHTML = "Your Current is $" + rewards;
         });
 
 
