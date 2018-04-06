@@ -54,10 +54,7 @@ function validate(serviceCode)
 				{
 					var sentence = records[i][1][0];
 					isSentenceValid(test).then((isValid)=>{
-						if(isValid)
-						{
-							console.log("valid");
-						}
+						console.log(sentence + " " + isValid);
 						if(!isValid)
 						{
 							reward+=invalidLanguagePenalty;
@@ -109,4 +106,4 @@ var rewards = validateRecords(serviceCode);
 console.log("user A reward: "+rewards);
 var serviceCode = ["AZeSdVZngFB"];
 var rewards = validateRecords(serviceCode);
-console.log("user B reward: "rewards);
+console.log("user B reward: " + rewards);
