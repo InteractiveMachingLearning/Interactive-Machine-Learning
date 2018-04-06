@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
    <head>
-    <title>Socket.IO chat</title>
+    <title>Chat Survey</title>
     <style>
 
     </style>
@@ -78,10 +78,10 @@
                 <li>You will need to complete 15 rounds of dialog.</li>
                 <li>After completing experiment, you will receive a service code</li>
                 <li><b>Leaving conversation too early, you will NOT recevie a service code</b></li>
-              </ol>
-              <br />
+                </ol>
               <ol>
-                <b style="font-size: 18px;">ATTENTION:</b>
+               
+                <b style="font-size: 15px;">ATTENTION:</b>
                 <li id="attention" style="font-size: 14px;"></li>
               </ol>
             <!-- <b>ATTENTION:.</b> -->
@@ -89,11 +89,12 @@
               <p>Wait 20 seconds to be connected to [an artificially intelligent (AI) agent, another user].</p>
               <p>2.If connection exceeds 20 seconds, session will end and you will be paid for that time</p>
               <p>3.After completing experiment, you will receive a service code</p> -->
-              <br />
+      
               <b><label style=" float: left;text-align: center;width: 100%;font-size: 20px;"> You will receive more rewards if you answer or ask more questions </label></b>
               <label id="notification"> notification </label>
-              <br>
+        
               <label id="roundNumber"> Round 0 </label>
+              <label id="rewards"> Your Current rewards is $0 </label>
               <button id="exitButton" onclick="Exit()" style="background: red;width: 80px;height:50px;margin-left:40%;border:2px solid; border-color:gray;display:none">Exit</button>
 
 
@@ -139,6 +140,7 @@
       var serviceCode = "service code";
       var exitPressed = false;
       var myQuestions = [  [], []  ];
+      var garbageQuestionIndex ;
        waiting();
       var isUserB;
       var conversationCounter = -2;
@@ -167,13 +169,17 @@
           document.getElementById('q3').disabled = false;
           document.getElementById('q4').disabled = false;
           document.getElementById('q5').disabled = false;
-          document.getElementById('q6').disabled = false;
+          document.getElementById('q6').disabled = false; 
           document.getElementById('Yes').disabled = false;
           document.getElementById('No').disabled = false;
         }
         function sendQuestion(i)
         {
             var socket = io();
+            if(garbageQuestionIndex==i){
+              window.alert("You choose a question that does not make sense to human!\nSo your rewards are deducted!")
+              garbageQuestionIndex = -1;
+            }
             socket.emit('chat message',myQuestions[i]);
             waiting();
             return false;
@@ -298,6 +304,12 @@
           socket.on('questions', function(questions){
 
               myQuestions = questions;
+              for( i=0 ;i<6 ;i++){
+                if(questions[i][1]=='Garbage'){
+                  garbageQuestionIndex = i;
+                 
+                }
+              }
               document.getElementById('q1').innerHTML = questions[0][0];
               document.getElementById('q2').innerHTML = questions[1][0];
               document.getElementById('q3').innerHTML = questions[2][0];
@@ -327,6 +339,19 @@
           }
 
         });
+        
+        socket.on('current rewards',function(id,rewards){
+          if(id==0){
+            if(!isUserB){
+              document.getElementById('rewards').innerHTML = "Your Current is $" + id;
+            }
+          }else{
+            if(isUserB){
+              document.getElementById('rewards').innerHTML = "Your Current is $" + id;
+            }
+          }
+        });
+
         socket.on('id', function(i){
           $('#messages').append($('<li>').text(i.toString()));
           window.scrollTo(0, document.body.scrollHeight);
