@@ -5,6 +5,7 @@ var app = express();
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var checkNaturalLanguage = require('./checkNaturalLanguage');
 
 
 
@@ -284,8 +285,9 @@ socket.on('chat message', function(msg){
 		    else
 		    {
 			    console.log("Non English");
-			    socket.emit('validity', 0);
 			    room_pair[user_room[socket_user[socket.id]]].deductAReward();
+			    socket.emit('validity', 0);
+			    socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getAReward());
 	    	}
    		});
   	}
@@ -295,16 +297,20 @@ socket.on('chat message', function(msg){
 	    	console.log("USERB SELECTED GARBAGE");
 	    	socket.emit('validity', 0);
 	    	room_pair[user_room[socket_user[socket.id]]].deductBReward();
+	    	socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getBReward());
 		}
 	}
 
 	io.sockets.in('room'+ user_room[socket_user[socket.id]]).emit('chat message', socket_name[socket.id], msg);
 	room_pair[user_room[socket_user[socket.id]]].addRecord(socket_user[socket.id], msg);
 
+
 	if(socket_name[socket.id] == 'User A') {
+		room_pair[user_room[socket_user[socket.id]]].deductAReward();
 		socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getAReward());
 	}
 	else {
+		room_pair[user_room[socket_user[socket.id]]].deductBReward();
 		socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getBReward());
 	}
  });
