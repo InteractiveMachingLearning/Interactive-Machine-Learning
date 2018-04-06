@@ -306,11 +306,11 @@ socket.on('chat message', function(msg){
 
 
 	if(socket_name[socket.id] == 'User A') {
-		room_pair[user_room[socket_user[socket.id]]].addAReward();
+		room_pair[user_room[socket_user[socket.id]]].userAAddReward();
 		socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getAReward());
 	}
 	else {
-		room_pair[user_room[socket_user[socket.id]]].addBReward();
+		room_pair[user_room[socket_user[socket.id]]].userBAddReward();
 		socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getBReward());
 	}
  });
