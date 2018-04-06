@@ -80,7 +80,7 @@
                 <li><b>Leaving conversation too early, you will NOT recevie a service code</b></li>
                 </ol>
               <ol>
-               
+
                 <b style="font-size: 15px;">ATTENTION:</b>
                 <li id="attention" style="font-size: 14px;"></li>
               </ol>
@@ -89,10 +89,10 @@
               <p>Wait 20 seconds to be connected to [an artificially intelligent (AI) agent, another user].</p>
               <p>2.If connection exceeds 20 seconds, session will end and you will be paid for that time</p>
               <p>3.After completing experiment, you will receive a service code</p> -->
-      
+
               <b><label style=" float: left;text-align: center;width: 100%;font-size: 20px;"> You will receive more rewards if you answer or ask more questions </label></b>
               <label id="notification"> notification </label>
-        
+
               <label id="roundNumber"> Round 0 </label>
               <label id="rewards"> Your Current rewards is $0 </label>
               <button id="exitButton" onclick="Exit()" style="background: red;width: 80px;height:50px;margin-left:40%;border:2px solid; border-color:gray;display:none">Exit</button>
@@ -144,7 +144,7 @@
        waiting();
       var isUserB;
       var conversationCounter = -2;
-      
+
         function waiting()
         {
           document.getElementById('m').disabled = true;
@@ -229,6 +229,7 @@
         });
 
 
+
         socket.on('chat message', function(id, msg){
           conversationCounter++;
           document.getElementById('roundNumber').innerHTML = 'Round ' +  Math.floor(( conversationCounter/2 )+1);
@@ -307,7 +308,7 @@
               for( i=0 ;i<6 ;i++){
                 if(questions[i][1]=='Garbage'){
                   garbageQuestionIndex = i;
-                 
+
                 }
               }
               document.getElementById('q1').innerHTML = questions[0][0];
@@ -339,7 +340,7 @@
           }
 
         });
-        
+
         socket.on('current rewards',function(id,rewards){
           if(id==0){
             if(!isUserB){
@@ -352,11 +353,28 @@
           }
         });
 
+
         socket.on('id', function(i){
           $('#messages').append($('<li>').text(i.toString()));
           window.scrollTo(0, document.body.scrollHeight);
           id = i;
         });
+
+        socket.on('validity', function(isValid){
+          console.log("Now in validity!!!");
+          if(isValid == 0)
+          {
+            if(isUserB)
+            {
+              window.alert("User B please choose from meaningful questions. Your reward is deducted.");
+            }
+            else
+            {
+              window.alert("User A please write natural English! Your reward is deducted.");
+            }
+          }
+        });
+
 
         socket.on('serviceCode', function(i){
 

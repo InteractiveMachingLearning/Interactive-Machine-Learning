@@ -224,15 +224,15 @@ function getQuestions(){
 	 	collection.push(pair);
 	}
 
-	//Shuffle questions here 
-	var currentIndex = collection.length, temporaryValue, randomIndex;	
+	//Shuffle questions here
+	var currentIndex = collection.length, temporaryValue, randomIndex;
 	while (0 !== currentIndex) {
 
-		
+
 		randomIndex = Math.floor(Math.random() * currentIndex);
 		currentIndex -= 1;
 
-	
+
 		temporaryValue = collection[currentIndex];
 		collection[currentIndex] = collection[randomIndex];
 		collection[randomIndex] = temporaryValue;

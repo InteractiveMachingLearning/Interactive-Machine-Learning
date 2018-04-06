@@ -19,7 +19,7 @@ module.exports =
 		console.log("hello");
 	}
 	*/
-	
+
 	isSentenceValid:function(text) // test if userA input a natural language
 	{
 	  var isValid;
