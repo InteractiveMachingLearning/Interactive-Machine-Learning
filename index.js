@@ -150,7 +150,7 @@ class Pair {
 		if (this.recordCount > 11) {
 			this.userAReward += 0.04;
 		}
-		
+
 	}
 	userBAddReward() {
 		if (this.recordCount > 11) {
@@ -275,7 +275,7 @@ io.on('connection', function(socket){
 	});
 
 socket.on('chat message', function(msg){
-	if(socket_name[socket.id] == 'User A' && msg.toLowerCase().trim() != "hi!" && msg.toLowerCase().trim() != "no") {
+	if(socket_name[socket.id] == 'User A' && msg.toLowerCase().trim() != "hi!" && msg.toLowerCase().trim() != "no" && msg.toLowerCase().trim() != "ok") {
 		console.log("USERID is " + id);
 		checkNaturalLanguage.isSentenceValid(msg).then((isValid)=>{
 		    console.log("The message is " + msg);
