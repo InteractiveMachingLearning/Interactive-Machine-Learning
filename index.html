@@ -65,7 +65,11 @@
      </form>
    </div>
       <div id="chat_container">
+          <div id="completeMessage">
+
+            </div>>
   <div id="container" style="width:100%;">
+          
           <ul id="messages"></ul>
 
           <div id="information" style="padding:24px;position: fixed;left:60%;background:rgba(255,255,255,0.2); color:white; line-height: 15pt;">
@@ -92,7 +96,7 @@
 
               <label id="roundNumber"> Round 0 </label>
               <label id="rewards"> Your Current rewards is $-1 </label>
-              <button id="exitButton" onclick="Exit()" style="background: red;width: 80px;height:50px;margin-left:40%;border:2px solid; border-color:gray;">Exit</button>
+              <button id="exitButton" onclick="Exit()" style="background:brown;color:whitesmoke;width: 120px;font-size: 15px;height:50px;margin-left:33%;border:2px solid; border-color:gray;">End Conversation</button>
 
 
 
@@ -169,6 +173,18 @@
           document.getElementById('q6').disabled = false; 
           document.getElementById('Yes').disabled = false;
           document.getElementById('No').disabled = false;
+        }
+        function experimentEnding(){
+            document.getElementById('m').style.display = "none";
+            document.getElementById('send_button').style.display = "none";
+            document.getElementById('q1').style.display = "none";
+            document.getElementById('q2').style.display = "none";
+            document.getElementById('q3').style.display = "none";
+            document.getElementById('q4').style.display = "none";
+            document.getElementById('q5').style.display = "none";
+            document.getElementById('q6').style.display = "none";
+            document.getElementById('Yes').style.display = "none";
+            document.getElementById('No').style.display = "none";
         }
         function sendQuestion(i)
         {
@@ -375,12 +391,17 @@
             serviceCode = i;
             var completeMsg;
             if(isUserB){
-              completeMsg = "You are done, thank you for your help! \nPlease copy the service code below and submit it in your Mechanical Turk job. \nYour service code is: \n " + i + "B" ;
+              completeMsg = "You are done, thank you for your help! <br> Please copy the service code below and submit it in your Mechanical Turk job.  Your service code is: <br>  " + i + "B" ;
               }else{
-              completeMsg = "You are done, thank you for your help! \nPlease copy the service code below and submit it in your Mechanical Turk job. \nYour service code is: \n " + i + "A" ;
+              completeMsg = "You are done, thank you for your help! <br> Please copy the service code below and submit it in your Mechanical Turk job.  Your service code is: <br>  " + i + "A" ;
               }
-            window.alert(completeMsg);
-            waiting();
+            // window.alert(completeMsg);
+            document.getElementById('container').innerHTML = "";
+            console.log(document.getElementById('completeMessage'));
+            document.getElementById('completeMessage').style.display = 'block';
+            document.getElementById('completeMessage').innerHTML =completeMsg;
+            experimentEnding();
+           
           }
           else
           {
@@ -389,17 +410,21 @@
                completeMsg = "No service code because you quit the experiment too early";
             }else{
                 if(isUserB){
-              completeMsg = "You are done, thank you for your help! \nPlease copy the service code below and submit it in your Mechanical Turk job. \nYour service code is: \n " + i + "B" ;
+              completeMsg = "You are done, thank you for your help! <br> Please copy the service code below and submit it in your Mechanical Turk job.  Your service code is: <br>  " + i + "B" ;
               }else{
-              completeMsg = "You are done, thank you for your help! \nPlease copy the service code below and submit it in your Mechanical Turk job. \nYour service code is: \n " + i + "A" ;
+              completeMsg = "You are done, thank you for your help! <br> Please copy the service code below and submit it in your Mechanical Turk job.  Your service code is: <br>  " + i + "A" ;
               }
             }
-            window.alert(completeMsg);
-            waiting();
+            // window.alert(completeMsg);
+            document.getElementById('container').innerHTML = "";
+            console.log(document.getElementById('completeMessage'));
+            document.getElementById('completeMessage').style.display = 'block';
+            document.getElementById('completeMessage').innerHTML =completeMsg;
+            experimentEnding();
+           
           }
 
-          document.getElementById("exitButton").disabled = true;
-          document.getElementById('notification').innerHTML = "The experiment is over. Thank you for your help!";
+        //  document.getElementById('notification').innerHTML = "The experiment is over. Thank you for your help!";
           socket.disconnect();
         });
       });
