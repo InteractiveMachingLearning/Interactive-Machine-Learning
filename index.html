@@ -281,21 +281,21 @@
                 {
                   document.getElementById('binary_selection').style.display = 'none';
                   document.getElementById('chat_form').style.display = 'block';
-
                 }
               }
 
 
             }
 
-            if (id == "User A") {
+            if (id == "User A")
+            {
               socket.emit('get questions');
             }
 
             if(conversationCounter/2 == 15) // temporary upper bound of questions needed to be answered
-                      {
-                        Exit();
-                      }
+            {
+              Exit();
+            }
         });
 
 
@@ -369,7 +369,7 @@
         socket.on('serviceCode', function(i){
 
           var questionLowerBoundCheck = conversationCounter / 2;
-          if(questionLowerBoundCheck > 10) //temporary lower bound of questions needed to be answered
+          if(questionLowerBoundCheck > 5) //temporary lower bound of conversation rounds needed to be answered
           {
             console.log("service code received");
             serviceCode = i;
