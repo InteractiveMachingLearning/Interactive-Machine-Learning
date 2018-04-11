@@ -70,6 +70,8 @@ class Pair {
 		this.serviceCode = makeServiceCode();
 		this.userAReward = 0.05;
 		this.userBReward = 0.05;
+		this.userAGarbage = 0;
+		this.userBGarbage = 0;
 	}
 	addUserA(user, userInfo) {
 		this.users.push(user);
@@ -148,13 +150,13 @@ class Pair {
 	}
 	userAAddReward() {
 		if (this.recordCount > 11) {
-			this.userAReward += 0.04;
+			this.userAReward += 0.02;
 		}
 
 	}
 	userBAddReward() {
 		if (this.recordCount > 11) {
-			this.userBReward += 0.04;
+			this.userBReward += 0.02;
 		}
 	}
 	getAReward() {
@@ -164,15 +166,27 @@ class Pair {
 		return this.userBReward;
 	}
 	deductAReward() {
-		this.userAReward -= 0.05;
+		this.userAReward -= 0.02;
+		this.userAGarbage += 1;
 		if (this.userAReward < 0) {
 			this.userAReward = 0;
 		}
 	}
 	deductBReward() {
-		this.userBReward -= 0.05;
+		this.userBReward -= 0.02;
+		this.userBGarbage += 1;
 		if (this.userBReward < 0) {
 			this.userBReward = 0;
+		}
+	}
+	shouldKickA() {
+		if (this.recordCount > 61) {
+			return (this.userAGarbage * 1.0 / this.recordCount) >= 0.25;
+		}
+	}
+	shouldKickB() {
+		if (this.recordCount > 61) {
+			return (this.userBGarbage * 1.0 / this.recordCount) >= 0.25;
 		}
 	}
 }
@@ -288,6 +302,9 @@ socket.on('chat message', function(msg){
 			    room_pair[user_room[socket_user[socket.id]]].deductAReward();
 			    socket.emit('validity', 0);
 			    socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getAReward());
+			    if (room_pair[user_room[socket_user[socket.id]]].shouldKickA()) {
+			    	socket.emit('kick', 1);
+			    }
 	    	}
    		});
   	}
@@ -298,6 +315,9 @@ socket.on('chat message', function(msg){
 	    	socket.emit('validity', 0);
 	    	room_pair[user_room[socket_user[socket.id]]].deductBReward();
 	    	socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getBReward());
+	    	if (room_pair[user_room[socket_user[socket.id]]].shouldKickB()) {
+			    	socket.emit('kick', 1);
+			}
 		}
 	}
 
