@@ -68,7 +68,7 @@ margin-left: 15px;
  }
 
  #roundNumber{
-  background: brown;
+  background: green;
   float: left;
   text-align: center;
   width: 40%;
@@ -79,13 +79,20 @@ margin-left: 15px;
  }
  #rewards{
   float: left;
-  background: brown;
+  background: green;
   text-align: center;
   vertical-align: middle;
   width: 40%;
   font-size: 20px;
   height: 60px;
   line-height: 28px;
+ }
+ #completeMessage{
+  display: none;
+  margin: 50px;
+  text-align: center;
+  font-size: 40px;
+  color: white;
  }
 .radio-label{
 float: none;
