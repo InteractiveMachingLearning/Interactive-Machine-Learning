@@ -80,7 +80,7 @@
                 <li><b>Leaving conversation before the 5th round, you will NOT recevie a service code</b></li>
                 <li id="attention" style="font-size: 14px;"></li>
                 </ol>
-             
+
             <!-- <b>ATTENTION:.</b> -->
               <!-- <p>1.You need to answer/choose xx questions in total</p>
               <p>Wait 20 seconds to be connected to [an artificially intelligent (AI) agent, another user].</p>
@@ -173,8 +173,8 @@
         function sendQuestion(i)
         {
             var socket = io();
-            if(garbageQuestionIndex==i){
-              window.alert("You choose a question that does not make sense to human!\nSo your rewards are deducted!")
+            if(garbageQuestionIndex==i)
+            {
               garbageQuestionIndex = -1;
             }
             socket.emit('chat message',myQuestions[i]);
@@ -356,11 +356,11 @@
           {
             if(isUserB)
             {
-              window.alert("User B please choose from meaningful questions. Your reward is deducted.");
+              window.alert("Please choose from meaningful questions. Your reward is deducted.");
             }
             else
             {
-              window.alert("User A please write natural English! Your reward is deducted.");
+              window.alert("Please write natural English! Your reward is deducted.");
             }
           }
         });
