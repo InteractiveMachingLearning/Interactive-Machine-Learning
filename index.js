@@ -160,10 +160,10 @@ class Pair {
 		}
 	}
 	getAReward() {
-		return this.userAReward;
+		return this.userAReward.toFixed(2);
 	}
 	getBReward() {
-		return this.userBReward;
+		return this.userBReward.toFixed(2);
 	}
 	deductAReward() {
 		this.userAReward -= 0.02;
@@ -181,13 +181,15 @@ class Pair {
 	}
 	shouldKickA() {
 		if (this.recordCount > 61) {
-			return (this.userAGarbage * 1.0 / this.recordCount) >= 0.25;
+			return (this.userAGarbage * 2.0 / this.recordCount) >= 0.25;
 		}
+		return false;
 	}
 	shouldKickB() {
 		if (this.recordCount > 61) {
-			return (this.userBGarbage * 1.0 / this.recordCount) >= 0.25;
+			return (this.userBGarbage * 2.0 / this.recordCount) >= 0.25;
 		}
+		return false;
 	}
 }
 
@@ -289,25 +291,39 @@ io.on('connection', function(socket){
 	});
 
 socket.on('chat message', function(msg){
-	if(socket_name[socket.id] == 'User A' && msg.toLowerCase().trim() != "hi!" && msg.toLowerCase().trim() != "no" && msg.toLowerCase().trim() != "ok") {
-		console.log("USERID is " + id);
-		checkNaturalLanguage.isSentenceValid(msg).then((isValid)=>{
-		    console.log("The message is " + msg);
-		    if(isValid == true) {
-		    	console.log("Valid English");
-		    }
-		    else
-		    {
-			    console.log("Non English");
-			    room_pair[user_room[socket_user[socket.id]]].deductAReward();
-			    socket.emit('validity', 0);
-			    socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getAReward());
-			    if (room_pair[user_room[socket_user[socket.id]]].shouldKickA()) {
-			    	socket.emit('kick', 1);
-			    }
-	    	}
-   		});
-  	}
+	if(socket_name[socket.id] == 'User A')
+	{
+		if(msg.toLowerCase().trim() != "hi!" && msg.toLowerCase().trim() != "no" && msg.toLowerCase().trim() != "ok")
+		{
+			console.log("USERID is " + id);
+			checkNaturalLanguage.isSentenceValid(msg).then((isValid)=>{
+					console.log("The message is " + msg);
+					if(isValid == true) {
+						console.log("Valid English1");
+						room_pair[user_room[socket_user[socket.id]]].userAAddReward();
+						socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getAReward());
+					}
+					else
+					{
+						console.log("Non English");
+						room_pair[user_room[socket_user[socket.id]]].deductAReward();
+						socket.emit('validity', 0);
+						socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getAReward());
+						if (room_pair[user_room[socket_user[socket.id]]].shouldKickA())
+						{
+							console.log("kick a");
+							socket.emit('kick', 1);
+						}
+					}
+				});
+		}
+		else
+		{
+			console.log("Valid English2");
+			room_pair[user_room[socket_user[socket.id]]].userAAddReward();
+			socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getAReward());
+		}
+	}
 
 	if(socket_name[socket.id] == 'User B') {
 		if(msg[1] == "Garbage") {
@@ -316,8 +332,13 @@ socket.on('chat message', function(msg){
 	    	room_pair[user_room[socket_user[socket.id]]].deductBReward();
 	    	socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getBReward());
 	    	if (room_pair[user_room[socket_user[socket.id]]].shouldKickB()) {
+					  console.log("kick b");
 			    	socket.emit('kick', 1);
 			}
+		}
+		else {
+			room_pair[user_room[socket_user[socket.id]]].userBAddReward();
+			socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getBReward());
 		}
 	}
 
@@ -325,14 +346,14 @@ socket.on('chat message', function(msg){
 	room_pair[user_room[socket_user[socket.id]]].addRecord(socket_user[socket.id], msg);
 
 
-	if(socket_name[socket.id] == 'User A') {
-		room_pair[user_room[socket_user[socket.id]]].userAAddReward();
-		socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getAReward());
-	}
-	else {
-		room_pair[user_room[socket_user[socket.id]]].userBAddReward();
-		socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getBReward());
-	}
+	// if(socket_name[socket.id] == 'User A') {
+	// 	room_pair[user_room[socket_user[socket.id]]].userAAddReward();
+	// 	socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getAReward());
+	// }
+	// else {
+	// 	room_pair[user_room[socket_user[socket.id]]].userBAddReward();
+	// 	socket.emit('current reward', room_pair[user_room[socket_user[socket.id]]].getBReward());
+	// }
  });
 
 	socket.on('get questions', function(){

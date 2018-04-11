@@ -69,7 +69,7 @@
 
             </div>>
   <div id="container" style="width:100%;">
-          
+
           <ul id="messages"></ul>
 
           <div id="information" style="padding:24px;position: fixed;left:60%;background:rgba(255,255,255,0.2); color:white; line-height: 15pt;">
@@ -95,7 +95,7 @@
               <label id="notification"> notification </label>
 
               <label id="roundNumber"> Round 0 </label>
-              <label id="rewards"> Your Current rewards is $-1 </label>
+              <label id="rewards"> Your Current rewards is $0 </label>
               <button id="exitButton" onclick="Exit()" style="background:brown;color:whitesmoke;width: 120px;font-size: 15px;height:50px;margin-left:33%;border:2px solid; border-color:gray;">End Conversation</button>
 
 
@@ -242,6 +242,10 @@
         });
 
 
+        socket.on('kick', function(i){
+          window.alert('Your valid dialogue is below 75% of all questions. Now force exit.');
+          Exit();
+        });
 
         socket.on('chat message', function(id, msg){
           conversationCounter++;
@@ -401,7 +405,7 @@
             document.getElementById('completeMessage').style.display = 'block';
             document.getElementById('completeMessage').innerHTML =completeMsg;
             experimentEnding();
-           
+
           }
           else
           {
@@ -421,7 +425,7 @@
             document.getElementById('completeMessage').style.display = 'block';
             document.getElementById('completeMessage').innerHTML =completeMsg;
             experimentEnding();
-           
+
           }
 
         //  document.getElementById('notification').innerHTML = "The experiment is over. Thank you for your help!";
