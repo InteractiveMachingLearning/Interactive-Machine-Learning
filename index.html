@@ -11,7 +11,7 @@
   </head>
   <body>
      <div id="outercontainer">
-     <h3 style="text-align: center; color: #F2D7D5; font-family: Tw Cen MT;margin-bottom: 20px;">PLEASE FILL OUT THE FORM BELOW</h3>
+     <h3 style="text-align: center; color: #F2D7D5; font-family: Tw Cen MT;margin-bottom: 20px;font-size: 25px;">PLEASE FILL OUT THE FORM BELOW</h3>
 
      <form name="survey_form" id="survey_form" action="http://www.usc.edu/cgi-bin/form_handler" method="POST">
 
@@ -58,12 +58,13 @@
 
        <div style="text-align: center; ">
          <!-- <input type="submit" style="width: 20em; height: 20em;" /> -->
-         <button name="submit" style="width: 100px;height:30px;border:0px;background-color:lightskyblue" >Submit</button>
+         <button name="submit" style="width: 100px;height:30px;border:0px;background-color:lightskyblue;border-radius: 12px;" >Submit</button>
        </div>
 
 
      </form>
    </div>
+   
       <div id="chat_container">
           <div id="completeMessage">
 
@@ -72,7 +73,10 @@
 
           <ul id="messages"></ul>
 
+
           <div id="information" style="padding:24px;position: fixed;left:60%;background:rgba(255,255,255,0.2); color:white; line-height: 15pt; overflow: scroll; height: 230px;">
+
+
               <b style="font-size: 18px; text-align: left;">Things You Need To Know:</b>
               <ol style="font-size: 14px;">
                 <!-- <li>Wait for 20 seconds to be connected to another user.</li> -->
@@ -110,15 +114,15 @@
     </form>
           <div id="question_selection">
           <button id="q1" onclick="sendQuestion(0)">question1</button>
-              <br>
+            
          <button id="q2" onclick="sendQuestion(1)">question2</button>
-              <br>
+         
          <button id="q3" onclick="sendQuestion(2)">question3</button>
-             <br>
+           
          <button id="q4" onclick="sendQuestion(3)">question4</button>
-              <br>
+          
          <button id="q5" onclick="sendQuestion(4)">question5</button>
-              <br>
+          
          <button id="q6" onclick="sendQuestion(5)">question6</button>
           </div>
 
@@ -153,28 +157,28 @@
           document.getElementById('m').disabled = true;
           document.getElementById('send_button').disabled = true;
           document.getElementById('notification').innerHTML = "Waiting for Another User .... ";
-          document.getElementById('q1').disabled = true;
-          document.getElementById('q2').disabled = true;
-          document.getElementById('q3').disabled = true;
-          document.getElementById('q4').disabled = true;
-          document.getElementById('q5').disabled = true;
-          document.getElementById('q6').disabled = true;
-          document.getElementById('Yes').disabled = true;
-          document.getElementById('No').disabled = true;
+          document.getElementById('q1').style.display = 'none';
+          document.getElementById('q2').style.display = 'none';
+          document.getElementById('q3').style.display = 'none';
+          document.getElementById('q4').style.display = 'none';
+          document.getElementById('q5').style.display = 'none';
+          document.getElementById('q6').style.display = 'none';
+          document.getElementById('Yes').style.display = 'none';
+          document.getElementById('No').style.display = 'none';
         }
         function typing()
         {
           document.getElementById('m').disabled = false;
           document.getElementById('send_button').disabled = false;
           document.getElementById('notification').innerHTML = "It is Your Turn !!! ";
-          document.getElementById('q1').disabled = false;
-          document.getElementById('q2').disabled = false;
-          document.getElementById('q3').disabled = false;
-          document.getElementById('q4').disabled = false;
-          document.getElementById('q5').disabled = false;
-          document.getElementById('q6').disabled = false; 
-          document.getElementById('Yes').disabled = false;
-          document.getElementById('No').disabled = false;
+          document.getElementById('q1').style.display = 'block';
+          document.getElementById('q2').style.display = 'block';
+          document.getElementById('q3').style.display = 'block';
+          document.getElementById('q4').style.display = 'block';
+          document.getElementById('q5').style.display = 'block';
+          document.getElementById('q6').style.display = 'block';
+          document.getElementById('Yes').style.display = 'block';
+          document.getElementById('No').style.display = 'block';
         }
         function experimentEnding(){
             document.getElementById('m').style.display = "none";
@@ -209,6 +213,7 @@
           var socket = io();
           socket.emit('chat message', i);
           waiting();
+          document.getElementById('chat_form').style.display = "block";
           return false;
         }
 
@@ -340,7 +345,7 @@
 
          socket.on('identity', function(i){
           isUserB = (i==1);
-             if(isUserB){
+             if(isUserB){ 
 
                  document.getElementById('userType').innerHTML = 'Imagine you are a robot talking to human';
                  document.getElementById('question_selection').style.display = 'block';
