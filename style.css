@@ -36,7 +36,7 @@ margin-bottom: 15px; }
 #messages { margin-bottom: 40px; }
 #chat_container{display: none;}
 #outercontainer{
- 
+
   border-radius: 10px;
   width: 600px;
   margin-left: auto;
@@ -74,8 +74,8 @@ margin-left: 15px;
   width: 40%;
   font-size: 20px;
   vertical-align: middle;
-  height: 60px;
-  line-height: 60px;
+  height: 30px;
+  line-height: 30px;
  }
  #rewards{
   float: left;
@@ -84,7 +84,7 @@ margin-left: 15px;
   vertical-align: middle;
   width: 40%;
   font-size: 20px;
-  height: 60px;
+  height: 30px;
   line-height: 28px;
  }
  #completeMessage{
@@ -101,5 +101,3 @@ float: none;
 .checkbox-label{
 float: none;
 }
-
-

@@ -72,16 +72,19 @@
 
           <ul id="messages"></ul>
 
-          <div id="information" style="padding:24px;position: fixed;left:60%;background:rgba(255,255,255,0.2); color:white; line-height: 15pt;">
+          <div id="information" style="padding:24px;position: fixed;left:60%;background:rgba(255,255,255,0.2); color:white; line-height: 15pt; overflow: scroll; height: 230px;">
               <b style="font-size: 18px; text-align: left;">Things You Need To Know:</b>
               <ol style="font-size: 14px;">
                 <!-- <li>Wait for 20 seconds to be connected to another user.</li> -->
                 <!-- <li>If connection exceeds 20 seconds, session will end and you will be paid for that time.</li> -->
                 <!-- <li>Once connected, respond to [the AI, the user] as you would in a typical text message conversation.</li> -->
                 <li><labe id='userType'></label>></li>
-                <li>You will need to complete a max of 15 rounds of dialog.</li>
-                <li>After completing experiment, you will receive a service code</li>
-                <li><b>Leaving conversation before the 5th round, you will NOT recevie a service code</b></li>
+                <li>Please complete a minimum of 10 rounds of dialog for a base reward $0.05.</li>
+                <li>For each additional round, you will receive a bonus of $0.02 per response based on quality.</li>
+                <li>If your give a non-English or illogical response, your reward will be discounted by $0.01 or $0.02.</li>
+                <li>After completing at least 5 rounds, you will receive a service code. If you do not complete at least 5 rounds, you will not receive a service code.</li>
+                <li>You can leave the conversation with the EXIT button at anytime. However, <b>you will only receive a reward if you complete at least 10 rounds of dialog.</b></li>
+                <!-- <li><b>Leaving conversation before the 5th round, you will NOT recevie a service code</b></li> -->
                 <li id="attention" style="font-size: 14px;"></li>
                 </ol>
 
@@ -90,16 +93,15 @@
               <p>Wait 20 seconds to be connected to [an artificially intelligent (AI) agent, another user].</p>
               <p>2.If connection exceeds 20 seconds, session will end and you will be paid for that time</p>
               <p>3.After completing experiment, you will receive a service code</p> -->
+          </div>
 
-              <b><label style=" float: left;text-align: center;width: 100%;font-size: 20px;"> You will receive $0.04 for every round after 5th round, with a max reward of $0.45. Garbage answer or question will result in reward penalty. </label></b>
-              <label id="notification"> notification </label>
+          <div style="padding:5px; position:fixed; left: 60%; top: 35%; background:rgba(255,255,255,0.2); color:white; line-height:15pt;">
+            <!-- <b><label style=" float: left;text-align: center;width: 100%;font-size: 20px;"> You will receive $0.02 for every round after 5th round, with a max reward of $3. Garbage answer or question will result in reward penalty. </label></b> -->
+            <label id="notification"> notification </label>
 
-              <label id="roundNumber"> Round 0 </label>
-              <label id="rewards"> Your Current rewards is $0 </label>
-              <button id="exitButton" onclick="Exit()" style="background:brown;color:whitesmoke;width: 120px;font-size: 15px;height:50px;margin-left:33%;border:2px solid; border-color:gray;">End Conversation</button>
-
-
-
+            <label id="roundNumber"> Round 0 </label>
+            <label id="rewards"> Current rewards: $0 </label>
+            <button id="exitButton" onclick="Exit()" style="background:brown;color:whitesmoke;width: 120px;font-size: 15px;height:50px;margin-left:33%;border:2px solid; border-color:gray;">End Conversation</button>
 
           </div>
       </div>
@@ -340,12 +342,12 @@
           isUserB = (i==1);
              if(isUserB){
 
-                 document.getElementById('userType').innerHTML = 'Imaging you are a robot talking to human';
+                 document.getElementById('userType').innerHTML = 'Imagine you are a robot talking to human';
                  document.getElementById('question_selection').style.display = 'block';
                  document.getElementById('chat_form').style.display = 'none';
                  document.getElementById('attention').innerHTML = 'Please select questions that make sense to human.';
              }else{
-                 document.getElementById('userType').innerHTML = 'Imaging you are a human talking to robot';
+                 document.getElementById('userType').innerHTML = 'Imagine you are a human talking to robot';
                  document.getElementById('attention').innerHTML = 'Please provide responses relevant to questions. Your responses will be manmually reviewed. Your reward depends on the quality of your responses';
              }
         });
