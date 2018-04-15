@@ -167,6 +167,7 @@ class Pair {
 	}
 	deductAReward() {
 		this.userAReward -= 0.02;
+		this.userAReward.toFixed(2);
 		this.userAGarbage += 1;
 		if (this.userAReward < 0) {
 			this.userAReward = 0;
@@ -174,6 +175,7 @@ class Pair {
 	}
 	deductBReward() {
 		this.userBReward -= 0.02;
+		this.userBReward.toFixed(2);
 		this.userBGarbage += 1;
 		if (this.userBReward < 0) {
 			this.userBReward = 0;
