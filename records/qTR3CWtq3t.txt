@@ -1,1 +1,0 @@
-{"userAInfo":{"name":"1","age":"1","gender":"male","field":"introvert","occupation":"1","feeling":"1"},"userBinfo":{"name":"2","age":"2","gender":"male","field":"introvert","occupation":"2","feeling":"2"}}
