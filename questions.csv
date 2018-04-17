@@ -1,131 +1,168 @@
-Do you feel agitated or restless?,Binary,Observable,,
-Do you feel like you are able to stay calm?,Binary,Observable,,
-Do you need to move constantly?,Binary,Observable,,
-Do you feel like you get mad at yourself if you do not achieve your goals?,Binary,Observable,,
-Do you feel like you can make up your mind quickly when necessary?,Binary,Observable,,
-Do you feel slowed down physically or mentally?,Binary,Observable,,
-Do you feel tired even after a good night's rest?,Binary,Observable,,
-Would you say that you have had low energy lately?,Binary,Observable,,
-Do you feel that you are struggling at work or school?,Binary,Observable,,
-Do you feel like you have trouble getting moving?,Binary,Observable,,
-Would you say that you are unusually irritable?,Binary,Observable,,
-Do you struggle to keep moving throughout that day?,Binary,Observable,,
-"If something bothers you, do you find it hard to stop thinking about it?",Binary,Observable,,
-Do you have a hard time forgiving yourself if you fail to achieve some goal?,Binary,Observable,,
-Would you say that you often blame yourself when things go wrong?,Binary,Observable,,
-Do you sometimes feel fearful for no reason?,Binary,Observable,,
-"Have you recently experienced diarrhea, constipation, or other digestive problems?",Binary,Observable,,
-"When someone snaps at you, do you spend the rest of the day thinking about it?",Binary,Observable,,
-"Do you feel like you are easily alarmed, frightened, or surprised?",Binary,Observable,,
-Would you say that you have sweaty or cold clammy hands?,Binary,Observable,,
-"Have your muscles felt tense, aching, or sore lately?",Binary,Observable,,
-Are you overwhelmed by large crowds?,Binary,Observable,,
-Are you afraid of being left alone?,Binary,Observable,,
-Do you have a hard time swallowing or often experience a lump in throat?,Binary,Observable,,
-Would you describe yourself as decisive?,Binary,Observable,,
-Do you experience numbness or tingling in your extremities?,Binary,Observable,,
-Do you feel uneasy in situations where you are expected to display physical affection?,Binary,Observable,,
-"When you are really sad or down, do you seek the company of others?",Binary,Observable,,
-Are you easily distracted?,Binary,Observable,,
-Do you feel like you are able to motivate yourself to complete unpleasant but necessary tasks?,Binary,Observable,,
-Do you find it difficult to function normally when you are under pressure to meet a deadline?,Binary,Observable,,
-Do you sometimes get angry over things that others consider minor?,Binary,Observable,,
-"During tough times, are you more prone to indulge in unhealthy behaviors such as drugs or alcohol, eating unhealthy foods, or getting less sleep?",Binary,Observable,,
-Would you describe yourself as a generally nervous or calm person?,Binary,Observable,,
-"When things go wrong, do you feel like it takes you longer than others to get over it?",Binary,Sensitive,,
-Do you fear that confrontation with a friend or loved one might permanently damage your relationship?,Binary,Sensitive,,
-Would you say that you are fearful of confrontation?,Binary,Sensitive,,
-Would you say that you overanalyze your relationships with others?,Binary,Sensitive,,
-Would you say that you often feel bad about yourself?,Binary,Sensitive,,
-Do you think there are forces beyond your control preventing you from reaching a goal?,Binary,Sensitive,,
-Do you often stay up at night thinking about the things going on in your life?,Binary,Sensitive,,
-Do you find yourself overwhelmed examining problems from every possible angle?,Binary,Sensitive,,
-Have you recently cried for no apparent or an inexplicable reason?,Binary,Sensitive,,
-Do you feel like you have a persistent feeling of emptiness?,Binary,Sensitive,,
-Have you had thoughts about ending your life?,Binary,Sensitive,,
-Do you feel deserving of love?,Binary,Sensitive,,
-Would you consider yourself a smart person or do you fear you are less intelligent than the people who surround you?,Binary,Sensitive,,
-Do you feel like you have a hard time letting go of things that bother you?,Binary,Sensitive,,
-Do you feel like that you tend to focus on upsetting situations or events happening in your life?,Binary,Sensitive,,
-"Do you sometimes feel like that no matter what you do, you can’t get your mind off your problems?",Binary,Sensitive,,
-Do you often think about all the things you have not yet accomplished?,Binary,Sensitive,,
-Are you afraid of what awaits for you in the future?,Binary,Sensitive,,
-Would you describe your life like an emotional roller coaster?,Binary,Sensitive,,
-Do you need someone to tell you that you have done a good job in order to feel good about your work?,Binary,Sensitive,,
-Would you describe yourself as a private person?,Binary,Sensitive,,
-Would you describe yourself as an outside-the-box thinker?,Binary,Sensitive,,
-Is it your way or the highway?,Binary,Sensitive,,
-"When you get angry, do you feel like you have a good amount of self-control?",Binary,Sensitive,,
-Are you suspicious when you receive an unsolicited favor?,Binary,Sensitive,,
-Do you feel like everybody has to fend for themselves?,Binary,Sensitive,,
-Do you feel like you can rely on others?,Binary,Sensitive,,
-Do you feel generally satisfied with your life?,Binary,Sensitive,,
-Would you say that you feel as happy as the people around you?,Binary,Sensitive,,
-What do you think is making you feel this way?,Continuation,Continuation,,
-What do you think would change that?,Continuation,Continuation,,
-Could you tell me more about that?,Continuation,Continuation,,
-Hm…tell me more about that.,Continuation,Continuation,,
-Why?,Continuation,Continuation,,
-Could you please elaborate on that for me?,Continuation,Continuation,,
-I'd like to understand more about that. Please tell me more.,Continuation,Continuation,,
-When would you say this started?,Continuation,Continuation,,
-Is that something you would like to change or maintain? How?,Continuation,Continuation,,
-How recent was this?,Continuation,Continuation,,
-How do you feel about that?,Continuation,Continuation,,
-How does that make you feel?,Continuation,Continuation,,
-How often is this?,Continuation,Continuation,,
-How do you mean?,Continuation,Continuation,,
-What do you think is the cause of this?,Continuation,Continuation,,
-I am interested. Please tell me more.,Continuation,Continuation,,
-"I would like to hear more about that, if you are up for sharing.",Continuation,Continuation,,
-How did you cope with the last time things did not go your way?,Open-ended,Observable,,
-How did handle the last confrontation you had with a friend or loved one?,Open-ended,Observable,,
-How would you say you cope with failure?,Open-ended,Observable,,
-What are some challenges in your current relationships?,Open-ended,Observable,,
-Tell me about the last time you felt totally relaxed.,Open-ended,Observable,,
-Tell me about the last time you experienced dry mouth.,Open-ended,Observable,,
-How do you cope when someone snaps at you?,Open-ended,Observable,,
-When was the last time you experienced shortness of breath?,Open-ended,Observable,,
-When was the last time you fainted or felt like fainting? What caused it?,Open-ended,Observable,,
-What are some things that make you easily irritated?,Open-ended,Observable,,
-When was the last time you experienced a hot and/or cold flash?,Open-ended,Observable,,
-How hard is it for you to fall or stay asleep?,Open-ended,Observable,,
-When was the last time you felt dizzy or lightheaded? What caused it?,Open-ended,Observable,,
-How difficult is it for you to concentrate on one thing?,Open-ended,Observable,,
-How difficult is it for you to remember things?,Open-ended,Observable,,
-When was the last time you experienced a pounding or accelerated heart rate?,Open-ended,Observable,,
-How often would you say you lose important things?,Open-ended,Observable,,
-"When you are under stress, how hard would you say it is for you to calm yourself down on a scale of 1 to 10, 10 being impossible?",Open-ended,Observable,,
-How do you feel about attending gatherings where you can meet new people?,Open-ended,Observable,,
-How do you feel about meeting new people?,Open-ended,Observable,,
-"When you meet new people, how long does it take you to tell them a lot about yourself?",Open-ended,Observable,,
-How do you feel about exploring new places?,Open-ended,Observable,,
-How broad is your range of interests and hobbies?,Open-ended,Observable,,
-How do you feel about interacting with other people?,Open-ended,Observable,,
-How often would you say that you lose your temper?,Open-ended,Observable,,
-How does your work suffer when you are facing problems in your personal life?,Open-ended,Observable,,
-What are some unhealthy behaviors you indulge in?,Open-ended,Observable,,
-What is something you are currently struggling with in your life?,Open-ended,Observable,,
-What is the most recent major life change you have experienced?,Open-ended,Observable,,
-What do you look forward to when you wake up in the morning?,Open-ended,Sensitive,,
-How did you feel after your last romantic relationships ended?,Open-ended,Sensitive,,
-What is something you feel guilty about?,Open-ended,Sensitive,,
-When was the last time you cried and what triggered it?,Open-ended,Sensitive,,
-How often do you feel a sense of emptiness inside?,Open-ended,Sensitive,,
-How often do you think about death?,Open-ended,Sensitive,,
-What is something that makes you deserving of love?,Open-ended,Sensitive,,
-What is one quality that you love about yourself?,Open-ended,Sensitive,,
-Do you feel like that you spend time wondering why you feel the way you do?,Open-ended,Sensitive,,
-When was the last time you felt afraid of the dark?,Open-ended,Sensitive,,
-How do you feel about strangers?,Open-ended,Sensitive,,
-How often do you introspect or think a lot about why you do the things you do?,Open-ended,Sensitive,,
-Tell me about a time when you felt totally futile.,Open-ended,Sensitive,,
-What are some things that you think about frequently?,Open-ended,Sensitive,,
-Describe a time you feel that you presented yourself in a different way from who you really are.,Open-ended,Sensitive,,
-Describe a promise you have recently broken.,Open-ended,Sensitive,,
-Describe a lie you recently told.,Open-ended,Sensitive,,
-How much would you say you pride yourself on being different or unique?,Open-ended,Sensitive,,
-How often do you go out of your way to better myself?,Open-ended,Sensitive,,
-How hard is it for you to trust someone?,Open-ended,Sensitive,,
-What is something you are struggling to let go of?,Open-ended,Sensitive,,
-How many hippos do you have?,Garbage,,,
+What do you think is making you feel this way?,Continuation,Continuation,Continuation
+What do you think would change that?,Continuation,Continuation,Continuation
+Could you tell me more about that?,Continuation,Continuation,Continuation
+Hm…tell me more about that.,Continuation,Continuation,Continuation
+Why?,Continuation,Continuation,Continuation
+Could you please elaborate on that for me?,Continuation,Continuation,Continuation
+I'd like to understand more about that. Please tell me more.,Continuation,Continuation,Continuation
+When would you say this started?,Continuation,Continuation,Continuation
+Is that something you would like to change or maintain? How?,Continuation,Continuation,Continuation
+How recent was this?,Continuation,Continuation,Continuation
+How do you feel about that?,Continuation,Continuation,Continuation
+How does that make you feel?,Continuation,Continuation,Continuation
+How often is this?,Continuation,Continuation,Continuation
+How do you mean?,Continuation,Continuation,Continuation
+What do you think is the cause of this?,Continuation,Continuation,Continuation
+I am interested. Please tell me more.,Continuation,Continuation,Continuation
+"I would like to hear more about that, if you are up for sharing.",Continuation,Continuation,Continuation
+Tell me more about that...,Continuation,Continuation,Continuation
+How many hippos do you have?,Garbage,,
+Do you think anger ever justified?,Binary,Observable,Anger
+Is anger ever a good thing?,Binary,Observable,Anger
+Is getting angry an effective way of dealing with problems?,Binary,Observable,Anger
+Do you have a pet?,Binary,Observable,Animals
+Do you like animals?,Binary,Observable,Animals
+Did you grow up with pets in your home?,Binary,Observable,Animals
+Have you ever ridden a horse?,Binary,Observable,Animals
+Do you think that animals dream?,Binary,Observable,Animals
+Have you ever had a surprise birthday party for yourself or someone else?,Binary,Observable,Birthday
+Are birthdays really important?,Binary,Observable,Birthday
+Do you enjoy reading?,Binary,Observable,Books
+Do you think that it is more valuable to read a book than to watch television?,Binary,Observable,Books
+Do you think that the internet and television will eventually make books obsolete?,Binary,Observable,Books
+Do you think change is important?,Binary,Observable,Change
+"Are you happy in your current home/apt, or would you like to move or renovate it?",Binary,Observable,Change
+Do you often feel agitated or restless?,Binary,Observable,Psych
+Would you say you're a calm person?,Binary,Observable,Psych
+Do you feel like you make up your mind quickly?,Binary,Observable,Psych
+Do you think you are an irritable person?,Binary,Observable,Psych
+"If something bothers you, do you find it hard to stop thinking about it?",Binary,Observable,Psych
+"Do you feel like you are easily alarmed, frightened, or surprised?",Binary,Observable,Psych
+Are you overwhelmed by large crowds?,Binary,Observable,Psych
+Would you describe yourself as decisive?,Binary,Observable,Psych
+"When you are really sad or down, do you seek the company of others?",Binary,Observable,Psych
+Are you easily distracted?,Binary,Observable,Psych
+Are you motivated by deadlines?,Binary,Observable,Psych
+Do you think you work well under pressure?,Binary,Observable,Psych
+Do you sometimes give into unhealthy habits because of stress at work?,Binary,Observable,Psych
+Would you say that you are fearful of confrontation?,Binary,Observable,Psych
+Would you say that you overanalyze your relationships with others?,Binary,Observable,Psych
+Do you think there are forces beyond your control preventing you from reaching a goal?,Binary,Observable,Psych
+Would you describe yourself as a private person?,Binary,Observable,Psych
+Would you describe yourself as an outside-the-box thinker?,Binary,Observable,Psych
+Is it your way or the highway?,Binary,Observable,Psych
+Do you feel like everybody has to fend for themselves?,Binary,Observable,Psych
+I want to quit smoking. What should I do?,Open-ended,Observable,Advice
+I gained a lot of weight in last few years. I want to lose at least 10kg. What should I do?,Open-ended,Observable,Advice
+I hate my job. What should I do?,Open-ended,Observable,Advice
+I am always late. What should I do?,Open-ended,Observable,Advice
+I am new in this city. I would love to meet some people. What should I do?,Open-ended,Observable,Advice
+What makes you angry?,Open-ended,Observable,Anger
+When was the last time you got angry?,Open-ended,Observable,Anger
+What do you usually do when you get angry?,Open-ended,Observable,Anger
+What are the situations that make you angry?,Open-ended,Observable,Anger
+What is the best pet to own?,Open-ended,Observable,Animals
+What's your favorite animal?,Open-ended,Observable,Animals
+How did you celebrate your last birthday?,Open-ended,Observable,Birthday
+What are some things you like to do for your birthday?,Open-ended,Observable,Birthday
+When is your birthday?,Open-ended,Observable,Birthday
+What is the best birthday gift you have ever received?,Open-ended,Observable,Birthday
+What is the best birthday gift you have ever given?,Open-ended,Observable,Birthday
+What is the worst birthday gift you have ever received?,Open-ended,Observable,Birthday
+What is the worst birthday gift you have ever given?,Open-ended,Observable,Birthday
+What is your favorite story?,Open-ended,Observable,Books
+Who is your favorite author?,Open-ended,Observable,Books
+Who is your favorite character?,Open-ended,Observable,Books
+What is your favorite genre?,Open-ended,Observable,Books
+What was your favorite book growing up?,Open-ended,Observable,Books
+What book have read more than once?,Open-ended,Observable,Books
+What was the craziest change in appearance you have ever made?,Open-ended,Observable,Change
+How did you cope with the last time things did not go your way?,Open-ended,Observable,Psych
+Tell me about the last time you felt totally relaxed.,Open-ended,Observable,Psych
+What are some things that make you easily irritated?,Open-ended,Observable,Psych
+How difficult is it for you to concentrate on one thing?,Open-ended,Observable,Psych
+How difficult is it for you to remember things?,Open-ended,Observable,Psych
+How often would you say you lose important things?,Open-ended,Observable,Psych
+"When you are under stress, how hard would you say it is for you to calm yourself down on a scale of 1 to 10, 10 being impossible?",Open-ended,Observable,Psych
+How do you feel about attending gatherings where you can meet new people?,Open-ended,Observable,Psych
+How do you feel about meeting new people?,Open-ended,Observable,Psych
+"When you meet new people, how long does it take you to tell them a lot about yourself?",Open-ended,Observable,Psych
+How do you feel about exploring new places?,Open-ended,Observable,Psych
+How broad is your range of interests and hobbies?,Open-ended,Observable,Psych
+How do you feel about interacting with other people?,Open-ended,Observable,Psych
+How often would you say that you lose your temper?,Open-ended,Observable,Psych
+How does your work suffer when you are facing problems in your personal life?,Open-ended,Observable,Psych
+What are some unhealthy behaviors you indulge in?,Open-ended,Observable,Psych
+What is something you are currently struggling with in your life?,Open-ended,Observable,Psych
+What is the most recent major life change you have experienced?,Open-ended,Observable,Psych
+What do you look forward to when you wake up in the morning?,Open-ended,Sensitive,Psych
+How did you feel after your last romantic relationships ended?,Open-ended,Sensitive,Psych
+What is something you feel guilty about?,Open-ended,Sensitive,Psych
+When was the last time you cried and what triggered it?,Open-ended,Sensitive,Psych
+How often do you feel a sense of emptiness inside?,Open-ended,Sensitive,Psych
+How often do you think about death?,Open-ended,Sensitive,Psych
+What is something that makes you deserving of love?,Open-ended,Sensitive,Psych
+What is one quality that you love about yourself?,Open-ended,Sensitive,Psych
+Do you feel like that you spend time wondering why you feel the way you do?,Open-ended,Sensitive,Psych
+When was the last time you felt afraid of the dark?,Open-ended,Sensitive,Psych
+How do you feel about strangers?,Open-ended,Sensitive,Psych
+How often do you introspect or think a lot about why you do the things you do?,Open-ended,Sensitive,Psych
+Tell me about a time when you felt totally futile.,Open-ended,Sensitive,Psych
+What are some things that you think about frequently?,Open-ended,Sensitive,Psych
+Describe a time you feel that you presented yourself in a different way from who you really are.,Open-ended,Sensitive,Psych
+Describe a promise you have recently broken.,Open-ended,Sensitive,Psych
+Describe a lie you recently told.,Open-ended,Sensitive,Psych
+How much would you say you pride yourself on being different or unique?,Open-ended,Sensitive,Psych
+How often do you go out of your way to better myself?,Open-ended,Sensitive,Psych
+How hard is it for you to trust someone?,Open-ended,Sensitive,Psych
+What is something you are struggling to let go of?,Open-ended,Sensitive,Psych
+"When you get angry, do you feel like you have a good amount of self-control?",Binary,Sensitive,Anger
+Are you afraid of snakes?,Binary,Sensitive,Animals
+Are you frightened of spiders?,Binary,Sensitive,Animals
+Do you think animals have souls?,Binary,Sensitive,Animals
+Do you think people can change?,Binary,Sensitive,Change
+Do you think you can change?,Binary,Sensitive,Change
+Do you feel like you get mad at yourself if you do not achieve your goals?,Binary,Sensitive,Psych
+Do you ever struggle at work or school?,Binary,Sensitive,Psych
+Do you have a hard time forgiving yourself if you fail to achieve some goal?,Binary,Sensitive,Psych
+Would you say that you often blame yourself when things go wrong?,Binary,Sensitive,Psych
+Are you afraid of being left alone?,Binary,Sensitive,Psych
+"When things go wrong, do you feel like it takes you longer than others to get over it?",Binary,Sensitive,Psych
+Do you fear that confrontation with a friend or loved one might permanently damage your relationship?,Binary,Sensitive,Psych
+Would you say that you often feel bad about yourself?,Binary,Sensitive,Psych
+Have you experienced a feeling of emptiness lately?,Binary,Sensitive,Psych
+Have you had thoughts about ending your life?,Binary,Sensitive,Psych
+Do you feel deserving of love?,Binary,Sensitive,Psych
+Would you consider yourself a smart person?,Binary,Sensitive,Psych
+Do you feel like you have a hard time letting go of things that bother you?,Binary,Sensitive,Psych
+Are you afraid of the future?,Binary,Sensitive,Psych
+Would you describe your life like an emotional roller coaster?,Binary,Sensitive,Psych
+Are you suspicious when you receive an unsolicited favor?,Binary,Sensitive,Psych
+Do you feel like you can rely on others?,Binary,Sensitive,Psych
+Do you feel generally satisfied with your life?,Binary,Sensitive,Psych
+Would you say that you feel as happy as the people around you?,Binary,Sensitive,Psych
+I've felt sad a lot lately. What should I do?,Open-ended,Sensitive,Advice
+My girlfriend left me recently...and I've been feeling depressed. Have you been through a bad breakup before? What did you do?,Open-ended,Sensitive,Advice
+My partner is seeing someone. I secretly read their text messages. What should I do?,Open-ended,Sensitive,Advice
+Do you think it is okay to eat meat? Why or why not?,Open-ended,Sensitive,Animals
+What is your best birthday memory?,Open-ended,Sensitive,Birthday
+What is your worst birthday memory?,Open-ended,Sensitive,Birthday
+Have you made any recent changes in your life?,Open-ended,Sensitive,Change
+"If you could change anything in your life, what would it be?",Open-ended,Sensitive,Change
+What is the most difficult change you have ever had to make?,Open-ended,Sensitive,Change
+What was the last major change you made in your life?,Open-ended,Sensitive,Change
+What is one thing that you think you will never change about yourself?,Open-ended,Sensitive,Change
+"What is one thing you have tried to change, but couldn't?",Open-ended,Sensitive,Change
+If you won a million dollars what things would you change about your life? What things would you keep the same?,Open-ended,Sensitive,Change
+Has a friend of yours ever made any major changes that you were proud of?,Open-ended,Sensitive,Change
+How did handle the last confrontation you had with a friend or loved one?,Open-ended,Sensitive,Psych
+How would you say you cope with failure?,Open-ended,Sensitive,Psych
+What are some challenges in your current relationships?,Open-ended,Sensitive,Psych
+Do you have a unicorn?,Garbage,,
+Have you ever been to Moon or Sun?,Garbage,,
+Describe one of your penguins and why do you like it?,Garbage,,
+How do you feel after you make friend with the SpiderMan?,Garbage,,
+When was the last time you married Doctor Strange?,Garbage,,
+How often would you see a dinosaur?,Garbage,,
+Do you feel like that you spend time wondering why cat is stronger than dog?,Garbage,,
+Tell me about a time when you eat an ostrich?,Garbage,,
