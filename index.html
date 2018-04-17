@@ -74,7 +74,7 @@
           <ul id="messages"></ul>
 
 
-          <div id="information" style="padding:24px;position: fixed;left:52%;background:rgba(255,255,255,0.2); color:white; line-height: 15pt; overflow: scroll; height: 230px;">
+          <div id="information" style="padding:24px;padding-top:5px; position: fixed;left:52%;background:rgba(255,255,255,0.2); color:white; line-height: 15pt; overflow: scroll; height: 230px;">
 
 
               <b style="font-size: 18px; text-align: left;">Things You Need To Know:</b>
@@ -214,6 +214,7 @@
           socket.emit('chat message', i);
           waiting();
           document.getElementById('chat_form').style.display = "block";
+
           return false;
         }
 
